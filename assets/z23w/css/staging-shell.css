@@ -1,0 +1,167 @@
+/* ==========================================================================
+   STAGING ONLY: visual stand-ins for the global Zultys header, announcement
+   banner and footer, so the Vercel preview reads like the real site.
+
+   Do NOT ship this file to WordPress. The live theme already renders these
+   regions (navigation.css / the shared Elementor shell template).
+   Values are copied from the redesign's navigation.css and homepage.css.
+   ========================================================================== */
+
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fff; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.z23w .z23w-skip-link {
+	position: fixed;
+	top: 12px; left: 12px;
+	z-index: 100000;
+	width: 1px; height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	background: #fff;
+	color: #000640;
+	font-weight: 700;
+}
+.z23w .z23w-skip-link:focus { width: auto; height: auto; min-height: 44px; padding: 12px 18px; clip-path: none; }
+
+/* ---------- Header (sits on the hero gradient) ---------- */
+.z23w .z23w-shell-header { position: relative; z-index: 10; padding-top: 17px; color: #fff; }
+.z23w .z23w-shell-header a { text-decoration: none; }
+.z23w .z23w-announcement {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: min(1088px, calc(100% - 48px));
+	min-height: 37px;
+	margin-inline: auto;
+	padding: 7px 42px 7px 16px;
+	border: 1px solid rgba(255, 255, 255, .42);
+	border-radius: 20px;
+	background: linear-gradient(180deg, rgba(255, 255, 255, .19), rgba(128, 128, 128, .14));
+	font-size: 14px;
+	line-height: 1.35;
+	letter-spacing: 0;
+	text-align: center;
+}
+.z23w .z23w-announcement[hidden] { display: none; }
+.z23w .z23w-announcement a { margin-left: 8px; color: #a7d8b2; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+.z23w .z23w-announcement__close {
+	position: absolute;
+	top: 50%; right: 6px;
+	display: grid;
+	place-items: center;
+	width: 44px; height: 44px;
+	padding: 0;
+	transform: translateY(-50%);
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	cursor: pointer;
+}
+.z23w .z23w-header-row {
+	display: flex;
+	align-items: center;
+	width: min(1118px, calc(100% - 48px));
+	height: 35px;
+	margin: 15px auto 0;
+}
+.z23w .z23w-brand { display: inline-flex; flex: 0 0 136px; margin-right: 28px; }
+.z23w .z23w-brand img { width: 136px; height: auto; }
+.z23w .z23w-shell-nav { flex: 1 1 auto; }
+.z23w .z23w-shell-nav ul { display: flex; align-items: center; gap: 30px; }
+.z23w .z23w-shell-nav a {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 35px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: 0;
+	white-space: nowrap;
+	transition: color 160ms ease;
+}
+.z23w .z23w-shell-nav a:hover { color: #a7d8b2; }
+.z23w .z23w-header-actions { display: flex; align-items: center; gap: 11px; margin-left: 20px; }
+.z23w .z23w-sales-phone { display: inline-flex; align-items: center; gap: 5px; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0; white-space: nowrap; }
+.z23w .z23w-sales-phone span { font-weight: 400; }
+.z23w .z23w-header-actions .z23w-btn { min-width: 115px; }
+.z23w .z23w-menu-toggle { display: none; }
+.z23w .z23w-mobile-menu { display: none; }
+
+@media (max-width: 1250px) and (min-width: 1101px) {
+	.z23w .z23w-shell-nav ul { gap: 20px; }
+	.z23w .z23w-sales-phone span { display: none; }
+}
+@media (max-width: 1100px) {
+	.z23w .z23w-header-row { justify-content: space-between; width: calc(100% - 40px); height: 44px; }
+	.z23w .z23w-shell-nav, .z23w .z23w-header-actions { display: none; }
+	.z23w .z23w-menu-toggle {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		width: 44px; height: 44px;
+		padding: 0;
+		border: 1px solid rgba(255, 255, 255, .55);
+		border-radius: 50%;
+		background: transparent;
+		cursor: pointer;
+	}
+	.z23w .z23w-menu-toggle span { display: block; width: 18px; height: 2px; border-radius: 2px; background: #fff; }
+	.z23w .z23w-mobile-menu:not([hidden]) {
+		display: block;
+		width: calc(100% - 40px);
+		margin: 14px auto 0;
+		padding: 10px 20px 20px;
+		border-radius: 18px;
+		background: #fff;
+		box-shadow: 0 16px 44px rgba(0, 0, 0, .3);
+		color: #000640;
+	}
+	.z23w .z23w-mobile-menu li a { display: flex; align-items: center; min-height: 48px; border-bottom: 1px solid #e6e6e6; font-weight: 700; text-decoration: none; }
+	.z23w .z23w-mobile-menu__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+}
+@media (max-width: 600px) {
+	.z23w .z23w-announcement { width: calc(100% - 40px); padding-left: 14px; font-size: 13px; text-align: left; justify-content: flex-start; }
+}
+
+/* ---------- Footer ---------- */
+.z23w .z23w-shell-footer {
+	padding: 64px 0 40px;
+	background: linear-gradient(-44.94deg, #401d9b .77%, #000 88.4%);
+	color: #fff;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0;
+}
+.z23w .z23w-shell-footer a { text-decoration: none; }
+.z23w .z23w-shell-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.z23w .z23w-shell-footer__grid { display: grid; grid-template-columns: 1.9fr repeat(4, 1fr); gap: 40px 32px; }
+.z23w .z23w-shell-footer__brand > img { width: 190px; }
+.z23w .z23w-shell-footer__social img { width: 22px; height: 22px; }
+.z23w .z23w-shell-footer__brand p { max-width: 340px; margin-top: 22px; }
+.z23w .z23w-shell-footer__brand strong { display: block; font-size: 16px; line-height: 22px; }
+.z23w .z23w-shell-footer__accent { color: #4ba541; }
+.z23w .z23w-shell-footer__social { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 14px; }
+.z23w .z23w-shell-footer h2 { margin-bottom: 18px; color: #4ba541; font-size: 14px; font-weight: 700; line-height: 18px; }
+.z23w .z23w-shell-footer li a { display: inline-flex; align-items: center; min-height: 28px; }
+.z23w .z23w-shell-footer__bottom {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 12px 24px;
+	margin-top: 48px;
+	padding-top: 24px;
+	border-top: 1px solid rgba(255, 255, 255, .28);
+	color: #d5d3e6;
+}
+.z23w .z23w-shell-footer__bottom ul { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+@media (max-width: 900px) {
+	.z23w .z23w-shell-footer__grid { grid-template-columns: repeat(2, 1fr); }
+	.z23w .z23w-shell-footer__brand { grid-column: 1 / -1; }
+}
