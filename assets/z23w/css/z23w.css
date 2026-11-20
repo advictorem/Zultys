@@ -223,6 +223,20 @@
 	pointer-events: none;
 }
 .z23w .z23w-hero__media img { width: 100%; }
+/* Entrance + parallax. Both are opt-in from the script, so the phone is
+   simply visible without JavaScript or with reduced motion. The wrapper
+   carries the fade/rise; the image carries the scroll offset. */
+.z23w .z23w-hero__media[data-z23w-hero] {
+	transition: opacity 1100ms var(--z23w-ease), transform 1300ms var(--z23w-ease);
+}
+/* .z23w-hero-anim is set on <html> by a one-line inline script before first
+   paint, so the phone never flashes in and then out. */
+.z23w-hero-anim .z23w .z23w-hero__media:not([data-z23w-hero="in"]),
+.z23w .z23w-hero__media[data-z23w-hero="pending"] { opacity: 0; transform: translate3d(0, 48px, 0) scale(.965); }
+.z23w .z23w-hero__media[data-z23w-hero] img {
+	transform: translate3d(0, var(--z23w-parallax, 0px), 0);
+	will-change: transform;
+}
 
 /* ==========================================================================
    Module 2: High performance
@@ -579,7 +593,7 @@
 	position: absolute;
 	left: 0; bottom: 0;
 	z-index: -1;
-	width: min(1180px, 92vw);
+	width: min(590px, 46vw);
 	aspect-ratio: 486 / 281;
 	background: url("../icons/zultys-mark-outline.svg") left bottom / 100% auto no-repeat;
 	opacity: .1;
@@ -778,7 +792,7 @@
 	.z23w .z23w-slide__stage { height: 300px; }
 	.z23w .z23w-carousel__arrow { top: auto; bottom: 0; width: 44px; height: 44px; translate: none; }
 	.z23w .z23w-wave-toggle { display: none; }
-	.z23w .z23w-quote::after { width: 150vw; }
+	.z23w .z23w-quote::after { width: 75vw; }
 	.z23w .z23w-carousel__dots { margin-top: 20px; min-height: 44px; }
 
 	.z23w .z23w-form { grid-template-columns: 1fr; gap: 16px; margin-top: 28px; padding: 22px 18px; }
@@ -800,6 +814,8 @@
 		scroll-behavior: auto !important;
 	}
 	.z23w [data-z23w-reveal="pending"] { opacity: 1; transform: none; }
+	.z23w-hero-anim .z23w .z23w-hero__media, .z23w .z23w-hero__media[data-z23w-hero] { opacity: 1 !important; transform: none !important; }
+	.z23w .z23w-hero__media[data-z23w-hero] img { transform: none; }
 }
 
 @media (forced-colors: active) {

@@ -15,6 +15,48 @@
 	var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || root).querySelectorAll(sel)); };
 
 	/* ------------------------------------------------------------------
+	 * Module 1: the hero phone fades and rises in once its image has
+	 * actually loaded, then drifts gently against the scroll (parallax).
+	 * The image itself still loads eagerly: it is the page's main visual.
+	 * ------------------------------------------------------------------ */
+	(function heroPhone() {
+		var media = $('.z23w-hero__media');
+		var img = media && media.querySelector('img');
+		if (!media || !img || reduceMotion.matches) {
+			document.documentElement.classList.remove('z23w-hero-anim');
+			return;
+		}
+
+		media.setAttribute('data-z23w-hero', 'pending');
+		function show() {
+			// two frames so the hidden state is painted before the transition starts
+			requestAnimationFrame(function () {
+				requestAnimationFrame(function () { media.setAttribute('data-z23w-hero', 'in'); });
+			});
+		}
+		if (img.complete && img.naturalWidth) show();
+		else {
+			img.addEventListener('load', show, { once: true });
+			img.addEventListener('error', show, { once: true });
+			setTimeout(show, 2500); // never leave the product hidden on a slow connection
+		}
+
+		var hero = $('.z23w-hero');
+		var ticking = false;
+		function update() {
+			ticking = false;
+			var limit = hero.offsetTop + hero.offsetHeight + 200;
+			var y = Math.min(Math.max(window.scrollY, 0), limit);
+			var rate = window.innerWidth < 768 ? 0.05 : 0.09;
+			media.style.setProperty('--z23w-parallax', (-y * rate).toFixed(1) + 'px');
+		}
+		window.addEventListener('scroll', function () {
+			if (!ticking) { ticking = true; requestAnimationFrame(update); }
+		}, { passive: true });
+		update();
+	})();
+
+	/* ------------------------------------------------------------------
 	 * Scroll reveal. Content is visible by default; only blocks that start
 	 * below the fold are hidden, then revealed once as they scroll in.
 	 * ------------------------------------------------------------------ */

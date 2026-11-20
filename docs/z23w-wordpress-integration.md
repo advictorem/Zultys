@@ -24,7 +24,8 @@ Staged page: `phone/z-23w-ip-phone/index.html` (mirrors the WordPress URL `/phon
    - Gravity Forms outputs its own markup, so add a short skin that maps `.gform_wrapper` fields to the look of `.z23w-field` (white inputs, 8px radius, white labels) and gives `.gform_button` the gradient pill. The redesign's `button-interactions.css` already targets `.gform_wrapper .gform_button`.
 6. **Fonts:** the page uses Proxima Nova from the Adobe Fonts kit the site already loads (`use.typekit.net/gid7nhu.css`). In WordPress remove the `<link>` from the page; the theme provides it.
 7. **Design tokens:** `z23w.css` declares the `--z26-*` colour tokens with the same names and values as `design-system-tokens.css`. To follow Elementor global colours instead, delete those declarations from the `.z23w` rule so the page inherits the live values.
-8. **Remove from the old page** (per the brief): ZAC Phone Integration card, vertical phone sidebar, green headings, old buttons.
+8. **Hero entrance:** copy the one-line inline `<script>` from the page `<head>` (it adds `z23w-hero-anim` to `<html>`) so the phone is hidden before first paint and can fade in. Without it the page still works; the phone just appears without the entrance.
+9. **Remove from the old page** (per the brief): ZAC Phone Integration card, vertical phone sidebar, green headings, old buttons.
 
 ## Things to confirm
 
