@@ -28,6 +28,7 @@
 	--z23w-gradient-action: linear-gradient(67.42deg, var(--z26-color-sky) 20.765%, var(--z26-color-green) 81.142%);
 	--z23w-gradient-panel: linear-gradient(82.093deg, var(--z26-color-sky) 20.765%, var(--z26-color-green) 81.142%);
 	--z23w-gradient-panel-soft: linear-gradient(53.13deg, var(--z26-color-panel-blue) 25.07%, var(--z26-color-panel-green) 84.27%);
+	--z23w-gradient-lavender: linear-gradient(35.896deg, var(--z26-color-panel-blue) 33.46%, var(--z26-color-lavender) 77.83%);
 	--z23w-gradient-hero: linear-gradient(125.505759deg, var(--z26-color-ink) 13.868%, var(--z26-color-hero-blue) 97.088%);
 	--z23w-gradient-cta: linear-gradient(41.3745deg, var(--z26-color-ink) 2.1411%, var(--z26-color-cta-blue) 88.853%);
 
@@ -265,45 +266,28 @@
 	transition: transform 320ms var(--z23w-ease), box-shadow 320ms var(--z23w-ease);
 }
 
-/* Left: video */
+/* Left: video. The Watch Video button is the single call to action; its
+   stretched hit area makes the whole card open the video. */
 .z23w .z23w-video-card {
 	align-items: center;
-	gap: 28px;
-	padding: 48px 0 48px 48px;
+	gap: 12px;
+	padding: 28px 16px 12px 48px;
 	background: var(--z23w-gradient-cta);
 	box-shadow: 0 6px 30px rgba(0, 6, 64, .22);
 	color: #fff;
 }
-.z23w .z23w-video-card__copy { position: relative; z-index: 1; flex: 0 0 38%; }
+.z23w .z23w-video-card__copy { position: relative; z-index: 1; flex: 0 0 34%; }
 .z23w .z23w-video-card__copy .z23w-btn { margin-top: 24px; }
-/* The whole card is one click target for the Watch Video button. */
-.z23w .z23w-video-card__copy .z23w-btn::after { position: absolute; inset: -400px -900px; content: ""; }
-.z23w .z23w-video-card__thumb {
-	position: relative;
-	flex: 1 1 auto;
-	align-self: center;
-	margin-right: -36px;
-	overflow: hidden;
-	border-radius: 18px 0 0 18px;
-	box-shadow: 0 18px 44px rgba(0, 0, 0, .34);
-	aspect-ratio: 16 / 9;
-	background: #fff;
+.z23w .z23w-video-card__copy .z23w-btn::after { position: absolute; inset: -500px -1000px; content: ""; }
+.z23w .z23w-video-card__phone { flex: 1 1 0; min-width: 0; display: flex; justify-content: center; }
+.z23w .z23w-video-card__phone picture { display: contents; }
+.z23w .z23w-video-card__phone img {
+	/* the PNG carries transparent shadow padding, so it can run past its box */
+	width: 116%;
+	max-width: 640px;
+	margin: -2% -6% -6% -10%;
+	transition: transform 520ms var(--z23w-ease);
 }
-.z23w .z23w-video-card__thumb img { width: 100%; height: 100%; object-fit: cover; object-position: left center; }
-.z23w .z23w-play {
-	position: absolute;
-	top: 50%; left: calc(50% - 18px);
-	display: grid;
-	place-items: center;
-	width: 76px; height: 76px;
-	translate: -50% -50%;
-	border-radius: 50%;
-	background: var(--z23w-gradient-action);
-	box-shadow: 0 10px 26px rgba(0, 6, 64, .34);
-	color: var(--z26-color-navy);
-	transition: scale 320ms var(--z23w-ease);
-}
-.z23w .z23w-play svg { width: 26px; height: 26px; margin-left: 4px; }
 
 /* Right: quick start guide */
 .z23w .z23w-guide-card {
@@ -315,20 +299,20 @@
 .z23w .z23w-guide-card p { margin-top: 10px; max-width: 30ch; }
 .z23w .z23w-guide-card .z23w-btn { align-self: flex-start; margin-top: 20px; }
 .z23w .z23w-guide-card__doc {
+	/* Photographic booklet mockup; its own soft shadow is part of the image. */
 	align-self: center;
-	width: min(190px, 62%);
-	margin: 28px 0 -34px;
-	rotate: -4deg;
-	border-radius: 6px;
-	box-shadow: 0 22px 40px rgba(0, 6, 64, .28), 0 2px 6px rgba(0, 6, 64, .12);
-	transition: translate 420ms var(--z23w-ease), rotate 420ms var(--z23w-ease);
+	width: calc(100% + 64px);
+	max-width: none;
+	margin: auto -32px -6px;
+	padding-top: 14px;
+	transition: transform 520ms var(--z23w-ease);
 }
 
 @media (hover: hover) and (pointer: fine) {
 	.z23w .z23w-media-card:hover { transform: translateY(-4px); }
 	.z23w .z23w-video-card:hover { box-shadow: 0 14px 40px rgba(0, 6, 64, .3); }
-	.z23w .z23w-video-card:hover .z23w-play { scale: 1.07; }
-	.z23w .z23w-guide-card:hover .z23w-guide-card__doc { translate: 0 -8px; rotate: -2deg; }
+	.z23w .z23w-video-card:hover .z23w-video-card__phone img { transform: scale(1.025); }
+	.z23w .z23w-guide-card:hover .z23w-guide-card__doc { transform: translateY(-6px) scale(1.015); }
 	.z23w .z23w-performance__photo:hover img { transform: scale(1.03); }
 }
 
@@ -356,9 +340,8 @@
 }
 .z23w .z23w-feature-card__media {
 	padding: 28px 28px 0;
-	background: var(--z23w-gradient-panel);
+	background: var(--z23w-gradient-lavender);
 }
-.z23w .z23w-feature-card:nth-child(even) .z23w-feature-card__media { background: var(--z23w-gradient-panel-soft); }
 .z23w .z23w-feature-card__media img {
 	width: 100%;
 	aspect-ratio: 16 / 9;
@@ -449,7 +432,39 @@
 /* ==========================================================================
    Module 6: Phone suite carousel
    ========================================================================== */
-.z23w .z23w-suite { padding: var(--z23w-section-space) 0; overflow: hidden; }
+.z23w .z23w-suite { position: relative; isolation: isolate; padding: var(--z23w-section-space) 0; overflow: hidden; }
+.z23w .z23w-suite__wave { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.z23w .z23w-suite__wave canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.z23w .z23w-wave-toggle {
+	position: absolute;
+	right: 16px; bottom: 16px;
+	z-index: 3;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px; height: 44px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--z26-color-blue);
+	cursor: pointer;
+}
+.z23w .z23w-wave-toggle[hidden] { display: none; }
+.z23w .z23w-wave-toggle::before {
+	width: 0; height: 0;
+	margin-left: 3px;
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	border-left: 12px solid currentColor;
+	content: "";
+}
+.z23w .z23w-wave-toggle[aria-label^="Pause"]::before {
+	width: 14px; height: 16px;
+	margin-left: 0;
+	border: 0;
+	background: linear-gradient(to right, currentColor 0 4px, transparent 4px 9px, currentColor 9px 13px);
+}
 .z23w .z23w-carousel { position: relative; margin-top: 28px; }
 .z23w .z23w-carousel__viewport { overflow: hidden; touch-action: pan-y; cursor: grab; }
 .z23w .z23w-carousel__viewport.is-dragging { cursor: grabbing; }
@@ -475,19 +490,14 @@
 	width: 100%;
 	height: 430px;
 }
-.z23w .z23w-slide__stage::before {
-	position: absolute;
-	left: 50%; bottom: 6%;
-	width: min(720px, 92%);
-	height: 62%;
-	translate: -50% 0;
-	border-radius: 50%;
-	background: radial-gradient(closest-side, rgba(153, 199, 235, .5), rgba(153, 220, 171, .28) 58%, transparent);
-	content: "";
-}
+/* <picture> must not become the grid item, or the image's max-height has
+   nothing definite to resolve against and tall phones overflow the stage. */
+.z23w .z23w-slide__stage picture { display: contents; }
 .z23w .z23w-slide__stage img {
 	position: relative;
 	width: auto;
+	min-width: 0;
+	min-height: 0;
 	max-width: min(660px, 100%);
 	max-height: 100%;
 	object-fit: contain;
@@ -496,7 +506,8 @@
 	transition: transform 720ms var(--z23w-ease), opacity 480ms var(--z23w-ease);
 }
 .z23w .z23w-slide:not(.is-active) .z23w-slide__stage img { opacity: .0; transform: scale(.9); }
-.z23w .z23w-slide__name { margin-top: 12px; }
+.z23w .z23w-slide__stage--tall img { max-height: 94%; }
+.z23w .z23w-slide__name { position: relative; margin-top: 16px; }
 .z23w .z23w-slide .z23w-btn { margin-top: 18px; }
 .z23w .z23w-carousel__arrow {
 	position: absolute;
@@ -548,6 +559,7 @@
 	position: relative;
 	isolation: isolate;
 	padding: var(--z23w-section-space) 0;
+	overflow: hidden;
 	background: var(--z23w-gradient-hero);
 	color: #fff;
 }
@@ -558,6 +570,19 @@
 	background: radial-gradient(ellipse 720px 420px at 82% 30%, #00baff, transparent);
 	mix-blend-mode: color-dodge;
 	opacity: .5;
+	content: "";
+	pointer-events: none;
+}
+/* Oversized Zultys logo mark, cropped at the bottom-left corner, as on the
+   redesign's CTA cards (10% white). */
+.z23w .z23w-quote::after {
+	position: absolute;
+	left: 0; bottom: 0;
+	z-index: -1;
+	width: min(1180px, 92vw);
+	aspect-ratio: 486 / 281;
+	background: url("../icons/zultys-mark-outline.svg") left bottom / 100% auto no-repeat;
+	opacity: .1;
 	content: "";
 	pointer-events: none;
 }
@@ -698,9 +723,10 @@
 	.z23w .z23w-hero__media { margin-bottom: -130px; }
 	.z23w .z23w-performance { padding-top: calc(130px + 60px); }
 	.z23w .z23w-performance__inner { gap: 40px; }
-	.z23w .z23w-video-card { padding: 36px 0 36px 36px; }
-	.z23w .z23w-video-card__copy { flex-basis: 42%; }
+	.z23w .z23w-video-card { padding: 24px 8px 8px 36px; }
+	.z23w .z23w-video-card__copy { flex-basis: 38%; }
 	.z23w .z23w-guide-card { padding: 36px 30px 0; }
+	.z23w .z23w-guide-card__doc { width: calc(100% + 48px); margin-inline: -24px; }
 	.z23w .z23w-media-card { min-height: 360px; }
 	.z23w .z23w-feature-card__title { font-size: 24px; line-height: 26px; }
 	.z23w .z23w-feature-card__media { padding: 22px 22px 0; }
@@ -713,9 +739,9 @@
 @media (max-width: 860px) {
 	.z23w .z23w-type-section { font-size: 38px; line-height: 41px; }
 	.z23w .z23w-media__grid { grid-template-columns: 1fr; }
-	.z23w .z23w-guide-card { flex-direction: row; flex-wrap: wrap; align-items: flex-start; column-gap: 24px; padding: 36px 36px 0; min-height: 0; }
-	.z23w .z23w-guide-card__copy { flex: 1 1 260px; padding-bottom: 36px; }
-	.z23w .z23w-guide-card__doc { flex: 0 0 150px; width: 150px; margin: 4px 12px -30px 0; align-self: flex-start; }
+	.z23w .z23w-guide-card { flex-direction: row; align-items: center; gap: 8px; padding: 28px 12px 20px 36px; min-height: 0; }
+	.z23w .z23w-guide-card__copy { flex: 1 1 44%; }
+	.z23w .z23w-guide-card__doc { flex: 1 1 56%; width: 56%; min-width: 0; margin: 0; padding: 0; }
 }
 
 @media (max-width: 767px) {
@@ -732,13 +758,13 @@
 
 	.z23w .z23w-performance__inner { grid-template-columns: 1fr; gap: 32px; }
 
-	.z23w .z23w-video-card { flex-direction: column; align-items: stretch; gap: 26px; padding: 32px 24px 0; }
+	.z23w .z23w-video-card { flex-direction: column; align-items: stretch; gap: 4px; padding: 32px 12px 4px 24px; }
 	.z23w .z23w-video-card__copy { flex-basis: auto; }
 	.z23w .z23w-video-card__copy .z23w-btn { margin-top: 18px; }
-	.z23w .z23w-video-card__thumb { margin: 0; border-radius: 14px 14px 0 0; }
-	.z23w .z23w-play { left: 50%; width: 64px; height: 64px; }
-	.z23w .z23w-guide-card { padding: 32px 24px 0; }
-	.z23w .z23w-guide-card__doc { flex-basis: 120px; width: 120px; margin-right: 0; }
+	.z23w .z23w-video-card__phone { flex: 0 0 auto; }
+	.z23w .z23w-video-card__phone img { width: 100%; max-width: 440px; margin: 0; }
+	.z23w .z23w-guide-card { flex-direction: column; align-items: stretch; gap: 0; padding: 32px 24px 8px; }
+	.z23w .z23w-guide-card__doc { flex: 0 0 auto; width: calc(100% + 32px); margin: 12px -16px 0; }
 
 	.z23w .z23w-features__grid { grid-template-columns: 1fr; margin-top: 32px; }
 	.z23w .z23w-section-head { text-align: left; }
@@ -751,6 +777,8 @@
 	.z23w .z23w-slide { padding: 0 4px 6px; }
 	.z23w .z23w-slide__stage { height: 300px; }
 	.z23w .z23w-carousel__arrow { top: auto; bottom: 0; width: 44px; height: 44px; translate: none; }
+	.z23w .z23w-wave-toggle { display: none; }
+	.z23w .z23w-quote::after { width: 150vw; }
 	.z23w .z23w-carousel__dots { margin-top: 20px; min-height: 44px; }
 
 	.z23w .z23w-form { grid-template-columns: 1fr; gap: 16px; margin-top: 28px; padding: 22px 18px; }
@@ -762,8 +790,6 @@
 	.z23w .z23w-type-hero { font-size: 40px; line-height: 42px; }
 	.z23w .z23w-type-section { font-size: 31px; line-height: 34px; }
 	.z23w .z23w-slide__stage { height: 260px; }
-	.z23w .z23w-guide-card__doc { display: none; }
-	.z23w .z23w-guide-card__copy { padding-bottom: 32px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

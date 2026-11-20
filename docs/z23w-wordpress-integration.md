@@ -8,8 +8,9 @@ Staged page: `phone/z-23w-ip-phone/index.html` (mirrors the WordPress URL `/phon
 | --- | --- | --- |
 | `assets/z23w/css/z23w.css` | All page styles, scoped to `.z23w` | Yes |
 | `assets/z23w/js/z23w.js` | Reveal, Show More, carousel, video dialog (no dependencies) | Yes |
+| `assets/z23w/js/vendor/zultys-wave.js` | Dotted wave behind the carousel. Identical to the site's `assets/redesign/homepage-wave.js` | Only if that file is not already enqueued on the page; load it before `z23w.js` |
 | `assets/z23w/img/*` | Optimised WebP + fallbacks | Yes (upload to Media or the theme) |
-| `assets/z23w/icons/pdf.png`, `download.svg`, `play.svg`, `arrow.svg`, `caret-navy.svg` | Button and form icons referenced by the CSS | Yes |
+| `assets/z23w/icons/pdf.png`, `download.svg`, `play.svg`, `arrow.svg`, `caret-navy.svg`, `zultys-mark-outline.svg` | Button and form icons and the Request a Quote logo mark, referenced by the CSS | Yes |
 | `assets/z23w/css/staging-shell.css` | Stand-in header, announcement bar and footer | **No** |
 | Other files in `assets/z23w/icons/` | Used only by the staging shell | No |
 
@@ -28,8 +29,9 @@ Staged page: `phone/z-23w-ip-phone/index.html` (mirrors the WordPress URL `/phon
 ## Things to confirm
 
 - **Spec sheet link.** The hero button uses the data sheet URL from the build brief (`96-35323-Zultys-Z23W-Flyer_vSep2026.pdf`). The outline document lists the Quick Start Guide URL next to "[Product Flyer]", which looks like a paste error.
-- **Video.** The dialog plays the tutorial already on the current page (`/wp-content/uploads/2026/05/Z23W_Tutorialz.mp4`, 8 min, 53 MB). The card thumbnail is a frame from that video because no separate thumbnail was supplied.
-- **Quick Start Guide artwork** is page 1 of the PDF.
+- **Video.** The dialog plays the tutorial already on the current page (`/wp-content/uploads/2026/05/Z23W_Tutorialz.mp4`, 8 min, 53 MB). The card shows the Z 23W product image; a frame from the video is used only as the player's poster.
+- **Quick Start Guide artwork** is the supplied blank brochure mockup with pages 1 to 3 of the PDF mapped onto it (`tools/make_qsg_mockup.py`).
+- **Carousel wave.** It animates only while the section is on screen, has a pause button, and shows a still frame on phones and for reduced-motion or data-saver visitors, the same rules the ZAC page uses.
 - **Color Display image** was supplied at 600 x 400 px, so it is slightly soft on high-density screens. A larger original would fix that.
 - **Product images** arrived as transparent PNGs already; they were trimmed, edge-cleaned and given a soft ground shadow by `tools/process_assets.py`. Product pixels were not altered.
 

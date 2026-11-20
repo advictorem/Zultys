@@ -211,6 +211,54 @@
 	})();
 
 	/* ------------------------------------------------------------------
+	 * Module 6 background: the site's dotted traveling wave
+	 * (window.z26CreateSpotlightWave from vendor/zultys-wave.js, the same
+	 * routine behind the Mobile ZAC section). Runs only while the section
+	 * is on screen; a pause control is provided; phones, reduced-motion and
+	 * data-saver visitors get a single still frame, as on the ZAC page.
+	 * ------------------------------------------------------------------ */
+	(function wave() {
+		var host = $('[data-z23w-wave]');
+		var button = $('[data-z23w-wave-toggle]');
+		if (!host || typeof window.z26CreateSpotlightWave !== 'function') return;
+		var controller;
+		try { controller = window.z26CreateSpotlightWave(host); } catch (err) { controller = null; }
+		if (!controller) return;
+
+		var phone = window.matchMedia('(max-width: 767px)');
+		var connection = navigator.connection;
+		var inView = false;
+		var userPaused = false;
+
+		function canAnimate() {
+			return !reduceMotion.matches && !phone.matches && !(connection && connection.saveData);
+		}
+		function sync() {
+			var animate = canAnimate();
+			controller.setEnabled(true); // always paint at least one frame
+			controller.setRunning(animate && inView && !userPaused && !document.hidden);
+			if (button) {
+				button.hidden = !animate;
+				button.setAttribute('aria-label', (userPaused ? 'Play' : 'Pause') + ' background animation');
+			}
+		}
+		if (button) button.addEventListener('click', function () { userPaused = !userPaused; sync(); });
+		if ('IntersectionObserver' in window) {
+			new IntersectionObserver(function (entries) {
+				inView = entries[0].isIntersecting;
+				sync();
+			}).observe(host);
+		} else {
+			inView = true;
+		}
+		document.addEventListener('visibilitychange', sync);
+		[reduceMotion, phone].forEach(function (mq) {
+			if (mq.addEventListener) mq.addEventListener('change', sync); else if (mq.addListener) mq.addListener(sync);
+		});
+		sync();
+	})();
+
+	/* ------------------------------------------------------------------
 	 * Module 3: video dialog. Native <dialog> gives focus trapping, Esc and
 	 * focus return. The MP4 is attached only when first opened.
 	 * ------------------------------------------------------------------ */

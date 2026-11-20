@@ -115,12 +115,11 @@
 				<h2 class="z23w-type-card">See the Z23W IP Phone in Action</h2>
 				<button class="z23w-btn z23w-btn--gradient z23w-btn--icon" type="button" data-z23w-video-open aria-haspopup="dialog">Watch Video<span class="z23w-btn__icon z23w-btn__icon--play" aria-hidden="true"></span></button>
 			</div>
-			<div class="z23w-video-card__thumb" aria-hidden="true">
+			<div class="z23w-video-card__phone" aria-hidden="true">
 				<picture>
-					<source type="image/webp" srcset="/assets/z23w/img/video-poster-800.webp 800w, /assets/z23w/img/video-poster-1400.webp 1400w" sizes="(max-width: 767px) 100vw, 470px">
-					<img src="/assets/z23w/img/video-poster.jpg" width="1400" height="788" alt="" loading="lazy" decoding="async">
+					<source type="image/webp" srcset="/assets/z23w/img/z23w-hero-760.webp 760w, /assets/z23w/img/z23w-hero-1200.webp 1200w" sizes="(max-width: 767px) 90vw, 520px">
+					<img src="/assets/z23w/img/z23w-hero.png" width="1200" height="947" alt="" loading="lazy" decoding="async">
 				</picture>
-				<span class="z23w-play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.53.85l12-7.5a1 1 0 0 0 0-1.7l-12-7.5A1 1 0 0 0 7 4.5Z"/></svg></span>
 			</div>
 		</div>
 
@@ -131,8 +130,8 @@
 				<a class="z23w-btn z23w-btn--icon" href="https://www.zultys.com/wp-content/uploads/2026/05/Z_23W_Quick_Start_Guide_96-35233-01.pdf" target="_blank" rel="noopener">Download PDF<span class="z23w-visually-hidden">: Z 23W Quick Start Guide (opens in a new tab)</span><span class="z23w-btn__icon z23w-btn__icon--download" aria-hidden="true"></span></a>
 			</div>
 			<picture>
-				<source type="image/webp" srcset="/assets/z23w/img/quick-start-cover-520.webp">
-				<img class="z23w-guide-card__doc" src="/assets/z23w/img/quick-start-cover.jpg" width="520" height="753" alt="" loading="lazy" decoding="async">
+				<source type="image/webp" srcset="/assets/z23w/img/quick-start-mockup-800.webp 800w, /assets/z23w/img/quick-start-mockup-1400.webp 1400w" sizes="(max-width: 767px) 100vw, 460px">
+				<img class="z23w-guide-card__doc" src="/assets/z23w/img/quick-start-mockup.png" width="800" height="577" alt="Printed Z 23W Quick Start Guide booklet, open beside its cover" loading="lazy" decoding="async">
 			</picture>
 		</div>
 
@@ -173,6 +172,9 @@
      MODULE 6: PHONE SUITE CAROUSEL
      ===================================================================== -->
 <section class="z23w-suite" aria-labelledby="z23w-suite-title">
+	<!-- Animated dotted wave: same canvas routine as the Mobile ZAC section (vendor/zultys-wave.js) -->
+	<div class="z23w-suite__wave" data-z23w-wave aria-hidden="true"></div>
+	<button class="z23w-wave-toggle" type="button" data-z23w-wave-toggle aria-label="Pause background animation" hidden></button>
 	<div class="z23w-container">
 		<div class="z23w-section-head" data-z23w-reveal>
 			<h2 class="z23w-type-section" id="z23w-suite-title">Explore the Entire Zultys Integrated Phone Suite</h2>
@@ -319,6 +321,8 @@
 	<video controls playsinline preload="none" controlslist="nodownload" poster="/assets/z23w/img/video-poster.jpg" data-z23w-video data-src="https://www.zultys.com/wp-content/uploads/2026/05/Z23W_Tutorialz.mp4"></video>
 </dialog>
 
+<!-- Same file the site enqueues as assets/redesign/homepage-wave.js; skip this tag in WordPress if it is already loaded. -->
+<script src="/assets/z23w/js/vendor/zultys-wave.js" defer></script>
 <script src="/assets/z23w/js/z23w.js" defer></script>
 </body>
 </html>

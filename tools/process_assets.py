@@ -28,8 +28,7 @@ PHOTOS = {
     "feature-headset": ("Module_4_-_Wireless_Heaset_Support.jpg", [1100, 640], None),
     "feature-display": ("Module_4_-_Color_Display_and_Ease_of_Use.jpg", [600], None),
     "feature-deployment": ("Module_4_-_Simplified_Deployment.jpg", [1100, 640], None),
-    "video-poster": ("video-poster.jpg", [1400, 800], None),
-    "quick-start-cover": ("quick-start-cover.png", [520], None),
+    "video-poster": ("video-poster.jpg", [800], None),  # poster frame for the video dialog
 }
 
 

@@ -67,7 +67,7 @@ phones=[
 S=[]
 for i,(name,img,url,w,h,alt) in enumerate(phones,1):
     S.append(f'''					<div class="z23w-slide{' is-active' if i==1 else ''}" role="group" aria-roledescription="slide" aria-label="{i} of {len(phones)}: {name}" data-z23w-slide data-name="{name}">
-						<div class="z23w-slide__stage">
+						<div class="z23w-slide__stage{' z23w-slide__stage--tall' if h/w>0.8 else ''}">
 							<picture>
 								<source type="image/webp" srcset="/assets/z23w/img/{img}-720.webp 720w, /assets/z23w/img/{img}-1200.webp 1200w" sizes="(max-width: 767px) 92vw, 660px">
 								<img src="/assets/z23w/img/{img}.png" width="{w}" height="{h}" alt="{alt}" loading="lazy" decoding="async" draggable="false">
