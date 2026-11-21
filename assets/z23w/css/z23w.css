@@ -241,7 +241,7 @@
 /* ==========================================================================
    Module 2: High performance
    ========================================================================== */
-.z23w .z23w-performance { padding: calc(168px + 72px) 0 var(--z23w-section-space); }
+.z23w .z23w-performance { padding: calc(168px + 4px) 0 var(--z23w-section-space); }
 .z23w .z23w-performance__inner {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
@@ -664,20 +664,6 @@
 .z23w .z23w-form__footer .z23w-btn { min-width: 120px; }
 .z23w .z23w-form__status { flex: 1 1 260px; font-size: 14px; font-weight: 600; line-height: 20px; letter-spacing: 0; }
 .z23w .z23w-form__status:empty { display: none; }
-.z23w .z23w-staging-flag {
-	display: flex;
-	align-items: flex-start;
-	gap: 10px;
-	margin-top: 16px;
-	padding: 12px 16px;
-	border-radius: 13px;
-	background: rgba(255, 255, 255, .12);
-	color: #fff;
-	font-size: 14px;
-	line-height: 20px;
-	letter-spacing: 0;
-}
-.z23w .z23w-staging-flag strong { color: var(--z26-color-green); }
 
 /* ==========================================================================
    Video dialog
@@ -725,7 +711,7 @@
 @media (min-width: 1500px) {
 	.z23w .z23w-hero__inner { min-height: 600px; }
 	.z23w .z23w-hero__media { --z23w-bleed: 170px; margin-bottom: -180px; }
-	.z23w .z23w-performance { padding-top: calc(180px + 80px); }
+	.z23w .z23w-performance { padding-top: calc(180px + 4px); }
 }
 
 @media (max-width: 1100px) {
@@ -735,7 +721,7 @@
 	.z23w .z23w-hero__inner { grid-template-columns: minmax(0, 46fr) minmax(0, 54fr); min-height: 480px; }
 	.z23w .z23w-hero__copy { padding-bottom: 56px; }
 	.z23w .z23w-hero__media { margin-bottom: -130px; }
-	.z23w .z23w-performance { padding-top: calc(130px + 60px); }
+	.z23w .z23w-performance { padding-top: calc(130px + 4px); }
 	.z23w .z23w-performance__inner { gap: 40px; }
 	.z23w .z23w-video-card { padding: 24px 8px 8px 36px; }
 	.z23w .z23w-video-card__copy { flex-basis: 38%; }
@@ -768,7 +754,7 @@
 	.z23w .z23w-hero__copy { max-width: 520px; padding-bottom: 0; }
 	.z23w .z23w-hero__subtitle { margin-top: 8px; }
 	.z23w .z23w-hero__media { align-self: center; width: min(112%, 560px); max-width: none; margin: 20px 0 -96px; }
-	.z23w .z23w-performance { padding-top: calc(96px + 48px); }
+	.z23w .z23w-performance { padding-top: calc(96px + 8px); }
 
 	.z23w .z23w-performance__inner { grid-template-columns: 1fr; gap: 32px; }
 
