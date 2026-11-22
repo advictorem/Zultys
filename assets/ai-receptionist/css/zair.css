@@ -226,30 +226,24 @@
 .zair .zair-hero__body { margin-top: 16px; font-size: 18px; line-height: 24px; color: #e8f0fb; }
 .zair .zair-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
-/* Caller photo with a phone mockup in front of it. The pair hangs below the
-   gradient into the white section, like the Z 23W hero phone. */
+/* Phone on its own, hanging below the gradient into the white section like
+   the Z 23W hero phone. */
 .zair .zair-hero__media {
 	position: relative;
+	display: flex;
 	align-self: end;
-	min-height: 520px;
-	margin-bottom: -130px;
+	justify-content: center;
+	margin-bottom: -170px;
 }
-.zair .zair-hero__photo {
+.zair .zair-hero__media::before {
 	position: absolute;
-	top: 0; right: 0;
-	width: 82%;
-	overflow: hidden;
-	border-radius: var(--zair-radius-card);
-	box-shadow: 0 30px 70px rgba(0, 6, 64, .38);
-	aspect-ratio: 21 / 20;
-	background: var(--zair-gradient-panel);
-}
-.zair .zair-hero__photo img {
-	width: 100%; height: 100%;
-	object-fit: cover;
-	object-position: 30% 30%;
-	transform: translate3d(0, var(--zair-parallax, 0px), 0) scale(1.06);
-	will-change: transform;
+	top: 14%; left: 50%;
+	width: 520px; height: 520px;
+	translate: -50% 0;
+	border-radius: 50%;
+	background: radial-gradient(closest-side, rgba(0, 186, 255, .32), transparent);
+	content: "";
+	pointer-events: none;
 }
 
 /* ---------- Phone mockup (matches the homepage hero phone) ---------- */
@@ -258,31 +252,33 @@
 	--zair-sms-navy: #0c3787;
 	position: relative;
 	z-index: 1;
-	width: 286px;
-	margin-top: 96px;
-	padding: 10px;
-	border-radius: 48px;
-	background: linear-gradient(160deg, #3b5c9c 0%, #1a2c57 18%, #101d3d 55%, #2a4a8a 100%);
+	width: 300px;
+	margin-top: 40px;
+	padding: 11px;
+	border-radius: 52px;
+	background: linear-gradient(155deg, #5f8fe0 0%, #2f5fb8 14%, #1c3f8c 42%, #163679 70%, #3f72cf 100%);
 	box-shadow:
-		inset 0 0 0 1.5px rgba(160, 190, 240, .45),
-		inset 0 0 0 4px #0b1633,
-		0 40px 80px rgba(0, 6, 64, .45);
+		inset 0 0 0 1.5px rgba(190, 215, 255, .75),
+		inset 0 0 0 5px #1a3a82,
+		0 44px 90px rgba(0, 6, 64, .45),
+		0 0 0 1px rgba(10, 30, 80, .4);
+	translate: 0 var(--zair-parallax, 0px);
 	font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
 	font-size: 13px;
 	line-height: 17px;
 	letter-spacing: 0;
 }
-.zair .zair-phone__btn { position: absolute; width: 4px; border-radius: 2px; background: linear-gradient(90deg, #2a4a8a, #5b7cc0); }
-.zair .zair-phone__btn--a { left: -3px; top: 118px; height: 26px; }
-.zair .zair-phone__btn--b { left: -3px; top: 160px; height: 48px; }
-.zair .zair-phone__btn--c { right: -3px; top: 176px; height: 70px; }
+.zair .zair-phone__btn { position: absolute; width: 4px; border-radius: 2px; background: linear-gradient(90deg, #3a68c2, #7aa3ea); }
+.zair .zair-phone__btn--a { left: -3px; top: 128px; height: 30px; }
+.zair .zair-phone__btn--b { left: -3px; top: 176px; height: 56px; }
+.zair .zair-phone__btn--c { right: -3px; top: 196px; height: 82px; }
 .zair .zair-phone__screen {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	min-height: 500px;
+	min-height: 600px;
 	overflow: hidden;
-	border-radius: 39px;
+	border-radius: 42px;
 	background: #fff;
 	color: #111827;
 }
@@ -292,7 +288,7 @@
 	width: 128px; height: 26px;
 	translate: -50% 0;
 	border-radius: 0 0 16px 16px;
-	background: #0b1633;
+	background: #13295e;
 }
 .zair .zair-phone__notch::after {
 	position: absolute;
@@ -332,11 +328,12 @@
 	display: flex;
 	flex: 1;
 	flex-direction: column;
+	justify-content: flex-end;
 	gap: 10px;
 	padding: 12px 12px 14px;
 	background: #fff;
 }
-.zair .zair-phone__day { display: flex; align-items: center; gap: 10px; margin: 2px 4px 4px; color: #6b7280; font-size: 9.5px; line-height: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.zair .zair-phone__day { display: flex; align-items: center; gap: 10px; margin: 2px 4px auto; color: #6b7280; font-size: 9.5px; line-height: 12px; letter-spacing: .06em; text-transform: uppercase; }
 .zair .zair-phone__day::before, .zair .zair-phone__day::after { flex: 1; height: 1px; background: #e5e9f0; content: ""; }
 .zair .zair-msg {
 	max-width: 80%;
@@ -390,12 +387,11 @@
 .zair .zair-phone__tools svg { width: 17px; height: 17px; }
 
 /* Entrance: photo, then phone, then the messages in conversation order. */
-.zair-hero-anim .zair .zair-hero__media:not([data-zair-hero="in"]) :is(.zair-hero__photo, .zair-phone),
-.zair .zair-hero__media[data-zair-hero="pending"] :is(.zair-hero__photo, .zair-phone) { opacity: 0; transform: translate3d(0, 40px, 0) scale(.97); }
+.zair-hero-anim .zair .zair-hero__media:not([data-zair-hero="in"]) .zair-phone,
+.zair .zair-hero__media[data-zair-hero="pending"] .zair-phone { opacity: 0; transform: translate3d(0, 48px, 0) scale(.97); }
 .zair-hero-anim .zair .zair-hero__media:not([data-zair-hero="in"]) .zair-msg,
 .zair .zair-hero__media[data-zair-hero="pending"] .zair-msg { opacity: 0; transform: translate3d(0, 10px, 0) scale(.96); }
-.zair .zair-hero__media[data-zair-hero] :is(.zair-hero__photo, .zair-phone) { transition: opacity 1000ms var(--zair-ease), transform 1200ms var(--zair-ease); }
-.zair .zair-hero__media[data-zair-hero] .zair-phone { transition-delay: 220ms; }
+.zair .zair-hero__media[data-zair-hero] .zair-phone { transition: opacity 1000ms var(--zair-ease), transform 1200ms var(--zair-ease); }
 .zair .zair-hero__media[data-zair-hero] .zair-msg { transition: opacity 500ms var(--zair-ease), transform 600ms var(--zair-ease); }
 .zair .zair-hero__media[data-zair-hero] .zair-msg--ai:not(.zair-msg--typing) { transition-delay: 900ms; }
 .zair .zair-hero__media[data-zair-hero] .zair-msg--caller { transition-delay: 1700ms; }
@@ -404,15 +400,13 @@
 /* ==========================================================================
    Customer logo strip (Nextiva-style marquee)
    ========================================================================== */
-.zair .zair-logos { padding: calc(130px + 36px) 0 36px; }
+.zair .zair-logos { padding: calc(170px + 40px) 0 24px; }
 .zair .zair-logos__inner {
 	position: relative;
 	display: flex;
 	align-items: center;
 	gap: 40px;
-	padding: 26px 32px;
-	border-radius: 20px;
-	background: #f4f6f9;
+	padding: 8px 0;
 }
 .zair .zair-logos__lead {
 	display: flex;
@@ -439,32 +433,6 @@
 .zair .zair-marquee__list { display: flex; align-items: center; gap: 56px; padding-right: 56px; }
 .zair .zair-marquee__list img { display: block; width: auto; height: auto; max-height: 52px; max-width: 200px; opacity: .85; }
 @keyframes zair-marquee { to { transform: translateX(-50%); } }
-.zair .zair-marquee__toggle {
-	display: grid;
-	place-items: center;
-	flex: none;
-	width: 44px; height: 44px;
-	padding: 0;
-	border: 0;
-	border-radius: 50%;
-	background: transparent;
-	color: var(--z26-color-blue);
-	cursor: pointer;
-}
-.zair .zair-marquee__toggle::before {
-	width: 12px; height: 14px;
-	background: linear-gradient(to right, currentColor 0 4px, transparent 4px 8px, currentColor 8px 12px);
-	content: "";
-}
-.zair .zair-marquee__toggle[aria-label^="Play"]::before {
-	width: 0; height: 0;
-	margin-left: 3px;
-	border-top: 7px solid transparent;
-	border-bottom: 7px solid transparent;
-	border-left: 11px solid currentColor;
-	background: none;
-}
-
 /* ==========================================================================
    2: 24/7/365 coverage (Education page proof-card pattern over the dotted wave)
    ========================================================================== */
@@ -709,7 +677,7 @@
 	box-shadow: 0 18px 44px rgba(0, 6, 64, .2);
 	aspect-ratio: 4 / 5;
 }
-.zair .zair-risk__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
+.zair .zair-risk__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 18%; }
 .zair .zair-risk__photo::after {
 	position: absolute;
 	inset: auto 0 0 0;
@@ -737,8 +705,8 @@
 	isolation: isolate;
 	overflow: hidden;
 	padding: var(--zair-section-space) 0;
-	background: linear-gradient(120deg, #1f5fb8 0%, var(--z26-color-blue) 45%, #1474eb 100%);
-	color: #fff;
+	background: var(--zair-gradient-lavender);
+	color: var(--z26-color-navy);
 }
 .zair .zair-results::after {
 	position: absolute;
@@ -747,49 +715,41 @@
 	width: min(560px, 50%);
 	aspect-ratio: 486 / 281;
 	background: url("../icons/zultys-mark-outline.svg") right bottom / 100% auto no-repeat;
-	opacity: .12;
+	opacity: .35;
 	content: "";
 }
 .zair .zair-results__grid {
 	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 24px;
-	margin-top: 48px;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 16px;
+	margin-top: 44px;
 }
 .zair .zair-result {
 	display: flex;
 	flex-direction: column;
 	gap: 14px;
-	padding: 28px 28px 32px;
+	padding: 26px 22px 30px;
 	border-radius: 18px;
 	background: #fff;
-	box-shadow: 0 10px 30px rgba(0, 6, 64, .18);
+	box-shadow: 0 10px 30px rgba(0, 6, 64, .14);
 	color: #4b5568;
-	font-size: 17px;
-	line-height: 25px;
+	font-size: 16px;
+	line-height: 23px;
 	letter-spacing: -.015em;
 	transition: transform 320ms var(--zair-ease), box-shadow 320ms var(--zair-ease);
 }
-.zair .zair-result__head { display: flex; align-items: center; gap: 16px; }
+.zair .zair-result__head { display: flex; align-items: center; gap: 12px; }
 .zair .zair-result__badge {
 	display: grid;
 	place-items: center;
 	flex: none;
-	width: 52px; height: 52px;
+	width: 48px; height: 48px;
 	border-radius: 50%;
 	background: #e9f2fc;
 }
 .zair .zair-result__badge .zair-icon { width: 28px; height: 28px; color: var(--zair-icon-blue); }
 .zair .zair-result__badge .zair-icon .a { color: var(--zair-icon-green); }
-.zair .zair-result__title { color: var(--z26-color-navy); font-size: 28px; line-height: 30px; font-weight: 800; letter-spacing: -.03em; }
-.zair .zair-result--cta {
-	justify-content: center;
-	align-items: flex-start;
-	gap: 18px;
-	background: var(--z26-color-navy);
-	color: #fff;
-}
-.zair .zair-result--cta .zair-result__title { color: #fff; }
+.zair .zair-result__title { color: var(--z26-color-navy); font-size: 21px; line-height: 24px; font-weight: 800; letter-spacing: -.03em; }
 @media (hover: hover) and (pointer: fine) {
 	.zair .zair-result:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0, 6, 64, .26); }
 }
@@ -928,9 +888,9 @@
 	.zair .zair-type-card { font-size: 26px; line-height: 28px; }
 	.zair .zair-hero__inner { gap: 0 32px; min-height: 500px; }
 	.zair .zair-hero__subtitle { font-size: 24px; line-height: 27px; }
-	.zair .zair-hero__media { min-height: 470px; }
-	.zair .zair-phone { width: 256px; margin-top: 96px; }
-	.zair .zair-phone__screen { min-height: 470px; }
+	.zair .zair-phone { width: 272px; }
+	.zair .zair-phone__screen { min-height: 540px; }
+	.zair .zair-hero__media { margin-bottom: -150px; }
 	.zair .zair-orgs__inner, .zair .zair-risk__inner { gap: 40px; }
 	.zair .zair-orgs h2 { font-size: 34px; line-height: 37px; }
 	.zair .zair-calls__panel { padding: 28px; gap: 18px; }
@@ -946,7 +906,7 @@
 	.zair .zair-logos__inner { flex-wrap: wrap; gap: 18px; }
 	.zair .zair-logos__lead { flex: 1 1 100%; }
 	.zair .zair-risk__photo { order: -1; aspect-ratio: 16 / 10; }
-	.zair .zair-result__title { font-size: 24px; line-height: 27px; }
+	.zair .zair-results__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 767px) {
@@ -959,10 +919,10 @@
 	.zair .zair-hero__copy { padding-bottom: 0; }
 	.zair .zair-hero__subtitle { font-size: 22px; line-height: 25px; }
 	.zair .zair-hero__body { font-size: 17px; line-height: 23px; }
-	.zair .zair-hero__media { min-height: 0; margin: 32px 0 -110px; }
-	.zair .zair-hero__photo { position: relative; width: 88%; margin-left: auto; aspect-ratio: 4 / 3.3; }
-	.zair .zair-phone { width: 232px; margin-top: -190px; padding: 8px; border-radius: 40px; }
-	.zair .zair-phone__screen { min-height: 430px; border-radius: 33px; }
+	.zair .zair-hero__media { margin: 8px 0 -130px; }
+	.zair .zair-hero__media::before { width: 360px; height: 360px; }
+	.zair .zair-phone { width: 250px; margin-top: 24px; padding: 9px; border-radius: 44px; }
+	.zair .zair-phone__screen { min-height: 496px; border-radius: 36px; }
 	.zair .zair-phone__head { padding-top: 34px; }
 	.zair .zair-phone__x { display: none; }
 	.zair .zair-phone__input { font-size: 11px; }
@@ -980,8 +940,7 @@
 	.zair .zair-scene__btns i { width: 30px; height: 30px; }
 	.zair .zair-scene__badge { width: 48px; height: 48px; }
 	.zair .zair-scene__badge .zair-icon { width: 24px; height: 24px; }
-	.zair .zair-logos { padding-top: calc(110px + 24px); }
-	.zair .zair-logos__inner { padding: 20px 16px; }
+	.zair .zair-logos { padding-top: calc(130px + 28px); }
 	.zair .zair-marquee__list { gap: 40px; padding-right: 40px; }
 	.zair .zair-marquee__list img { max-height: 40px; max-width: 150px; }
 	.zair .zair-faq__item summary { font-size: 17px; line-height: 22px; }
@@ -994,7 +953,7 @@
 
 	.zair .zair-results__grid { grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
 	.zair .zair-result { padding: 22px 20px 26px; font-size: 16px; line-height: 23px; }
-	.zair .zair-result__title { font-size: 22px; line-height: 25px; }
+	.zair .zair-result__title { font-size: 20px; line-height: 23px; }
 	.zair .zair-result__badge { width: 44px; height: 44px; }
 	.zair .zair-wave-toggle { display: none; }
 
@@ -1011,9 +970,10 @@
 	.zair [data-zair-reveal="pending"] { opacity: 1; transform: none; }
 	.zair .zair-marquee__track { animation: none; }
 	.zair .zair-marquee { overflow-x: auto; }
-	.zair .zair-marquee__list[aria-hidden="true"], .zair .zair-marquee__toggle { display: none; }
+	.zair .zair-marquee__list[aria-hidden="true"] { display: none; }
 	.zair-hero-anim .zair .zair-hero__media *, .zair .zair-hero__media[data-zair-hero] * { opacity: 1 !important; }
-	.zair .zair-hero__media :is(.zair-hero__photo, .zair-phone, .zair-msg), .zair .zair-hero__photo img { transform: none !important; }
+	.zair .zair-hero__media :is(.zair-phone, .zair-msg) { transform: none !important; }
+	.zair .zair-phone { translate: none !important; }
 }
 
 @media (forced-colors: active) {

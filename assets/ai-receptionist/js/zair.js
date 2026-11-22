@@ -20,16 +20,12 @@
 	 * ------------------------------------------------------------------ */
 	(function hero() {
 		var media = $('.zair-hero__media');
-		var img = media && media.querySelector('.zair-hero__photo img');
-		if (!media || !img || reduceMotion.matches) {
+		if (!media || reduceMotion.matches) {
 			document.documentElement.classList.remove('zair-hero-anim');
 			return;
 		}
 		media.setAttribute('data-zair-hero', 'pending');
-		var shown = false;
 		function show() {
-			if (shown) return;
-			shown = true;
 			requestAnimationFrame(function () {
 				requestAnimationFrame(function () {
 					media.setAttribute('data-zair-hero', 'in');
@@ -37,21 +33,22 @@
 				});
 			});
 		}
-		if (img.complete && img.naturalWidth) show();
-		else {
-			img.addEventListener('load', show, { once: true });
-			img.addEventListener('error', show, { once: true });
-			setTimeout(show, 2500);
-		}
+		// Wait for the web font so the phone's text doesn't reflow mid-entrance.
+		if (document.fonts && document.fonts.ready) {
+			var done = false;
+			document.fonts.ready.then(function () { if (!done) { done = true; show(); } });
+			setTimeout(function () { if (!done) { done = true; show(); } }, 1200);
+		} else show();
 
+		// Parallax: the phone drifts up slightly as the page scrolls.
 		var heroEl = $('.zair-hero');
 		var ticking = false;
 		function update() {
 			ticking = false;
 			var limit = heroEl.offsetTop + heroEl.offsetHeight + 200;
 			var y = Math.min(Math.max(window.scrollY, 0), limit);
-			var rate = window.innerWidth < 768 ? 0.04 : 0.07;
-			media.style.setProperty('--zair-parallax', (y * rate).toFixed(1) + 'px');
+			var rate = window.innerWidth < 768 ? 0.05 : 0.09;
+			media.style.setProperty('--zair-parallax', (-y * rate).toFixed(1) + 'px');
 		}
 		window.addEventListener('scroll', function () {
 			if (!ticking) { ticking = true; requestAnimationFrame(update); }
@@ -121,20 +118,7 @@
 		sync();
 	})();
 
-	/* ------------------------------------------------------------------
-	 * Logo strip: CSS marquee that pauses on hover/focus; the button
-	 * gives a persistent pause (WCAG 2.2.2). Reduced motion: no animation.
-	 * ------------------------------------------------------------------ */
-	(function marquee() {
-		var strip = $('[data-zair-marquee]');
-		var button = $('[data-zair-marquee-toggle]');
-		if (!strip || !button) return;
-		if (reduceMotion.matches) { button.hidden = true; return; }
-		button.addEventListener('click', function () {
-			var paused = strip.classList.toggle('is-paused');
-			button.setAttribute('aria-label', (paused ? 'Play' : 'Pause') + ' logo animation');
-		});
-	})();
+	/* Logo strip: pure CSS marquee; pauses on hover/focus, static for reduced motion. */
 
 	/* ------------------------------------------------------------------
 	 * Staging shell only: announcement dismiss + simple mobile menu.

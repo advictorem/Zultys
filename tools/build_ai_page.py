@@ -78,7 +78,6 @@ RESULTS = [  # titles are new (short labels for the current page's bullets)
     ("nomiss", "No Missed Calls", "No missed calls or slow responses, reducing the number of lost leads and frustrated customers"),
     ("frontdesk", "Always-On Front Desk", "A consistent, professional “front desk” experience that’s always available"),
     ("overhead", "Lower Overhead", "Lower overhead to handle complex or customer-critical needs"),
-    ("dtmf", "Voice or Keypad Entry", "Flexibility enables callers to use voice or DTMF digit entry — improving the customer experience"),
 ]
 
 LOGOS = [  # testimonial logos from the redesign homepage, see tools/process_logos.py
@@ -148,7 +147,7 @@ def build():
 						</div>
 					</div>''' for ic, t, d in RISK)
     results = "\n".join(
-        f'''			<article class="zair-result" data-zair-reveal style="--zair-reveal-delay:{(i % 2) * 80}ms">
+        f'''			<article class="zair-result" data-zair-reveal style="--zair-reveal-delay:{i * 80}ms">
 				<div class="zair-result__head"><span class="zair-result__badge">{icon(ic)}</span><h3 class="zair-result__title">{t}</h3></div>
 				<p>{d}</p>
 			</article>''' for i, (ic, t, d) in enumerate(RESULTS))
@@ -177,7 +176,6 @@ def build():
 <!-- Hero entrance: hide the photo before first paint only when the script will reveal it. -->
 <script>(function(d){{if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('zair-hero-anim');setTimeout(function(){{d.classList.remove('zair-hero-anim')}},4000)}})(document.documentElement)</script>
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
-<link rel="preload" as="image" href="{A}/img/hero-caller-900.webp" imagesrcset="{A}/img/hero-caller-600.webp 600w, {A}/img/hero-caller-900.webp 900w, {A}/img/hero-caller-1400.webp 1400w" imagesizes="(max-width: 767px) 92vw, 560px" fetchpriority="high">
 <!-- Proxima Nova: the same Adobe Fonts kit the Zultys site loads -->
 <link rel="stylesheet" href="https://use.typekit.net/gid7nhu.css">
 <link rel="stylesheet" href="{A}/css/zair.css">
@@ -206,9 +204,6 @@ def build():
 			</div>
 		</div>
 		<div class="zair-hero__media">
-			<div class="zair-hero__photo">
-				{pic("hero-caller", [600, 900, 1400], "(max-width: 767px) 92vw, 560px", 900, 857, "Smiling professional on a call with a business", lazy=False)}
-			</div>
 			<!-- Phone mockup: same device and app chrome as the homepage hero phone,
 			     showing the example conversation from the current page. Decorative. -->
 			<div class="zair-phone" aria-hidden="true">
@@ -258,7 +253,6 @@ def build():
 				</ul>
 			</div>
 		</div>
-		<button class="zair-marquee__toggle" type="button" data-zair-marquee-toggle aria-label="Pause logo animation"></button>
 	</div>
 </section>
 
@@ -347,7 +341,7 @@ def build():
 			</div>
 		</div>
 		<figure class="zair-risk__photo" data-zair-reveal style="--zair-reveal-delay:90ms">
-			{pic("front-desk", [800, 1400], "(max-width: 900px) 100vw, 540px", 800, 534, "Patient checking in with a receptionist at a dental clinic front desk")}
+			{pic("happy-caller", [800, 1400], "(max-width: 900px) 100vw, 540px", 800, 756, "Smiling businesswoman taking a call on her mobile phone in a bright office")}
 			<span class="zair-shield" aria-hidden="true">{icon("shield")}</span>
 		</figure>
 	</div>
@@ -356,17 +350,13 @@ def build():
 <!-- =====================================================================
      6: RESULTS
      ===================================================================== -->
-<section class="zair-results zair-on-dark" aria-labelledby="zair-results-title">
-	<div class="zair-container">
+<section class="zair-results" aria-labelledby="zair-results-title">
+	<div class="zair-container zair-container--wide">
 		<div class="zair-section-head" data-zair-reveal>
 			<h2 class="zair-type-section" id="zair-results-title">Results That Improve Both Service and Efficiency</h2>
 		</div>
 		<div class="zair-results__grid">
 {results}
-			<div class="zair-result zair-result--cta" data-zair-reveal style="--zair-reveal-delay:80ms">
-				<h3 class="zair-result__title">See AI Receptionist in Action</h3>
-				<a class="zair-btn zair-btn--gradient" href="{DEMO}">Get a Demo</a>
-			</div>
 		</div>
 	</div>
 </section>
