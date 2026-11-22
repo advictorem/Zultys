@@ -1,0 +1,733 @@
+/* ==========================================================================
+   Zultys AI Receptionist page
+   --------------------------------------------------------------------------
+   Same design language as the Z 23W product page (tokens, type roles,
+   buttons, gradients, motion), scoped to the .zair root so nothing leaks
+   into the global WordPress theme. Token names and values mirror the
+   redesign's design-system-tokens.css / style-guide.css (--z26-*).
+
+   Sections: tokens, base, buttons, reveal, icons, 1 hero, 2 coverage,
+   3 organizations, 4 call examples, 5 minimize risk, 6 results, 7 CTA,
+   responsive.
+   ========================================================================== */
+
+.zair {
+	--z26-color-navy: #000640;
+	--z26-color-blue: #2a73cb;
+	--z26-color-sky: #99c7eb;
+	--z26-color-green: #99dcab;
+	--z26-color-panel-blue: #a2c6e6;
+	--z26-color-panel-green: #a7d8b2;
+	--z26-color-lavender: #b6b5dd;
+	--z26-color-ink: #020d17;
+	--z26-color-hero-blue: #2a6dc0;
+	--z26-color-cta-blue: #1474eb;
+	--z26-color-gray-light: #e6e6e6;
+	--z26-font-brand: "proxima-nova", "Proxima Nova", "Figtree", "Helvetica Neue", Arial, sans-serif;
+
+	--zair-gradient-action: linear-gradient(67.42deg, var(--z26-color-sky) 20.765%, var(--z26-color-green) 81.142%);
+	--zair-gradient-panel: linear-gradient(82.093deg, var(--z26-color-sky) 20.765%, var(--z26-color-green) 81.142%);
+	--zair-gradient-panel-soft: linear-gradient(53.13deg, var(--z26-color-panel-blue) 25.07%, var(--z26-color-panel-green) 84.27%);
+	--zair-gradient-lavender: linear-gradient(35.896deg, var(--z26-color-panel-blue) 33.46%, var(--z26-color-lavender) 77.83%);
+	--zair-gradient-lavender: linear-gradient(35.896deg, var(--z26-color-panel-blue) 33.46%, var(--z26-color-lavender) 77.83%);
+	--zair-icon-blue: #003cda;
+	--zair-icon-green: #4ba541;
+	--zair-gradient-hero: linear-gradient(125.505759deg, var(--z26-color-ink) 13.868%, var(--z26-color-hero-blue) 97.088%);
+	--zair-gradient-cta: linear-gradient(41.3745deg, var(--z26-color-ink) 2.1411%, var(--z26-color-cta-blue) 88.853%);
+
+	--zair-content: 1088px;
+	--zair-wide: 1187px;
+	--zair-gutter: 24px;
+	--zair-radius-card: 26px;
+	--zair-shadow-card: 0 3px 20px rgba(0, 0, 0, .16);
+	--zair-ease: cubic-bezier(.23, 1, .32, 1);
+	--zair-section-space: clamp(64px, 8vw, 110px);
+
+	position: relative;
+	overflow-x: clip;
+	background: #fff;
+	color: var(--z26-color-navy);
+	font-family: var(--z26-font-brand);
+	font-size: 16px;
+	line-height: 22px;
+	letter-spacing: -.025em;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+.zair *,
+.zair *::before,
+.zair *::after { box-sizing: border-box; }
+
+.zair :where(h1, h2, h3, p, ul, figure) { margin: 0; padding: 0; }
+.zair :where(ul) { list-style: none; }
+.zair :where(img, video) { display: block; max-width: 100%; height: auto; }
+.zair :where(a) { color: inherit; }
+.zair :where(button, input, select, textarea) { font: inherit; letter-spacing: inherit; color: inherit; }
+
+.zair :where(a, button, summary, input, select, textarea):focus-visible {
+	outline: 3px solid var(--z26-color-blue);
+	outline-offset: 4px;
+}
+.zair :where(.zair-on-dark) :where(a, button, summary, input, select, textarea):focus-visible {
+	outline-color: var(--z26-color-green);
+}
+
+.zair .zair-visually-hidden {
+	position: absolute !important;
+	width: 1px; height: 1px;
+	margin: -1px; padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+.zair .zair-container {
+	width: min(var(--zair-content), calc(100% - var(--zair-gutter) * 2));
+	margin-inline: auto;
+}
+.zair .zair-container--wide { width: min(var(--zair-wide), calc(100% - var(--zair-gutter) * 2)); }
+
+/* ---------- Type roles (style-guide.css) ---------- */
+.zair .zair-type-hero { font-size: 66px; line-height: 66px; font-weight: 800; letter-spacing: -.03em; }
+.zair .zair-type-section { font-size: 52px; line-height: 54px; font-weight: 800; letter-spacing: -.03em; text-wrap: balance; }
+.zair .zair-type-card { font-size: 32px; line-height: 32px; font-weight: 800; letter-spacing: -.03em; text-wrap: balance; }
+.zair .zair-type-lead { font-size: 18px; line-height: 22px; font-weight: 600; letter-spacing: -.03em; }
+.zair .zair-type-feature { font-size: 20px; line-height: 22px; font-weight: 700; letter-spacing: -.025em; }
+.zair .zair-text-blue { color: var(--z26-color-blue); }
+
+/* ---------- Buttons (style-guide.css + button-interactions.css) ---------- */
+.zair .zair-btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	height: 35px;
+	min-height: 35px;
+	padding: 7px 16px;
+	border: 1px solid transparent;
+	border-radius: 18px;
+	background: var(--z26-color-blue);
+	color: #fff;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 19px;
+	letter-spacing: 0;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	translate: 0 0;
+	scale: 1;
+	transition-property: translate, scale, box-shadow, background-color, border-color, color, filter;
+	transition-duration: 160ms;
+	transition-timing-function: var(--zair-ease);
+}
+/* 35px visual pill, 44px touch target */
+.zair .zair-btn::before { position: absolute; inset: -5px 0; border-radius: inherit; content: ""; }
+
+.zair .zair-btn--gradient {
+	background: var(--zair-gradient-action);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .16);
+	color: var(--z26-color-navy);
+}
+.zair .zair-btn--outline-light {
+	background: linear-gradient(#fff, #fff) padding-box, var(--zair-gradient-action) border-box;
+	color: var(--z26-color-navy);
+}
+.zair .zair-btn--outline-dark { border-color: var(--z26-color-sky); background: transparent; color: #fff; }
+
+/* Trailing 24px icon, same geometry as the ZAC "Download" buttons */
+.zair .zair-btn--icon { padding-inline-end: 50px; }
+.zair .zair-btn__icon {
+	position: absolute;
+	top: 50%;
+	inset-inline-end: 15px;
+	width: 24px; height: 24px;
+	translate: 0 -50%;
+	background: currentColor;
+	-webkit-mask: var(--zair-icon) center / contain no-repeat;
+	mask: var(--zair-icon) center / contain no-repeat;
+}
+.zair .zair-btn__icon--pdf { --zair-icon: url("../icons/pdf.png"); width: 23px; height: 23px; }
+.zair .zair-btn__icon--download { --zair-icon: url("../icons/download.svg"); }
+.zair .zair-btn__icon--play { --zair-icon: url("../icons/play.svg"); width: 20px; height: 20px; inset-inline-end: 16px; }
+.zair .zair-btn__icon--arrow { --zair-icon: url("../icons/arrow.svg"); width: 18px; height: 18px; inset-inline-end: 16px; }
+.zair .zair-btn--icon:has(.zair-btn__icon--arrow),
+.zair .zair-btn--icon:has(.zair-btn__icon--play) { padding-inline-end: 44px; }
+
+@media (hover: hover) and (pointer: fine) {
+	.zair .zair-btn:not(:disabled):hover { filter: brightness(1.045); }
+	.zair .zair-btn--gradient:not(:disabled):hover { box-shadow: none; }
+	.zair .zair-btn:not(.zair-btn--gradient, .zair-btn--outline-light, .zair-btn--outline-dark):not(:disabled):hover {
+		box-shadow: 0 8px 18px rgba(0, 6, 64, .18);
+	}
+	.zair :is(.zair-btn--outline-light, .zair-btn--outline-dark):not(:disabled):hover {
+		border-color: transparent;
+		background: var(--zair-gradient-action);
+		box-shadow: 0 8px 18px rgba(0, 6, 64, .18);
+		color: var(--z26-color-navy);
+		filter: none;
+	}
+}
+.zair .zair-btn:not(:disabled):active { scale: .985; box-shadow: 0 2px 6px rgba(0, 6, 64, .14); transition-duration: 100ms; }
+
+/* ---------- Scroll reveal ----------
+   Content is visible by default. Only blocks the script has marked as
+   offscreen are hidden, so no-JS, print and restored pages stay readable. */
+.zair [data-zair-reveal] {
+	transition: opacity 620ms var(--zair-ease), transform 620ms var(--zair-ease);
+	transition-delay: var(--zair-reveal-delay, 0ms);
+}
+.zair [data-zair-reveal="pending"] { opacity: 0; transform: translateY(22px); }
+
+/* ---------- Line icons (ZAC page style: royal blue line work, green accents) ---------- */
+.zair .zair-icon { display: block; width: 52px; height: 52px; flex: none; color: var(--zair-icon-blue); }
+.zair .zair-icon .a { color: var(--zair-icon-green); }
+.zair .zair-icon * { vector-effect: non-scaling-stroke; }
+.zair .zair-on-dark .zair-icon { color: #fff; }
+.zair .zair-on-dark .zair-icon .a { color: var(--z26-color-green); }
+
+.zair .zair-eyebrow-list { margin-top: 26px; }
+
+/* ==========================================================================
+   1: Hero
+   ========================================================================== */
+.zair .zair-hero {
+	position: relative;
+	z-index: 2;
+	isolation: isolate;
+	background: var(--zair-gradient-hero);
+	color: #fff;
+}
+.zair .zair-hero::before {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(ellipse 680px 360px at 76% 58%, #00baff, transparent);
+	mix-blend-mode: color-dodge;
+	opacity: .62;
+	content: "";
+	pointer-events: none;
+}
+.zair .zair-hero__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
+	align-items: center;
+	gap: 0 48px;
+	min-height: 560px;
+	padding-top: 52px;
+}
+.zair .zair-hero__copy { max-width: 500px; padding-bottom: 96px; }
+.zair .zair-hero__subtitle { margin-top: 14px; font-size: 28px; line-height: 30px; }
+.zair .zair-hero__body { margin-top: 16px; font-size: 18px; line-height: 24px; color: #e8f0fb; }
+.zair .zair-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* Caller photo with a phone mockup in front of it. The pair hangs below the
+   gradient into the white section, like the Z 23W hero phone. */
+.zair .zair-hero__media {
+	position: relative;
+	align-self: end;
+	min-height: 520px;
+	margin-bottom: -130px;
+}
+.zair .zair-hero__photo {
+	position: absolute;
+	top: 0; right: 0;
+	width: 82%;
+	overflow: hidden;
+	border-radius: var(--zair-radius-card);
+	box-shadow: 0 30px 70px rgba(0, 6, 64, .38);
+	aspect-ratio: 21 / 20;
+	background: var(--zair-gradient-panel);
+}
+.zair .zair-hero__photo img {
+	width: 100%; height: 100%;
+	object-fit: cover;
+	object-position: 30% 30%;
+	transform: translate3d(0, var(--zair-parallax, 0px), 0) scale(1.06);
+	will-change: transform;
+}
+
+/* ---------- Phone mockup ---------- */
+.zair .zair-phone {
+	position: relative;
+	z-index: 1;
+	width: 264px;
+	margin-top: 120px;
+	padding: 9px;
+	border-radius: 44px;
+	background: linear-gradient(145deg, #2b3242, #0b0f19 60%);
+	box-shadow: 0 40px 80px rgba(0, 6, 64, .45), inset 0 0 0 1.5px rgba(255, 255, 255, .14);
+	font-size: 13px;
+	line-height: 17px;
+	letter-spacing: -.005em;
+}
+.zair .zair-phone__screen {
+	display: flex;
+	flex-direction: column;
+	min-height: 452px;
+	overflow: hidden;
+	border-radius: 36px;
+	background: #fff;
+	color: var(--z26-color-navy);
+}
+.zair .zair-phone__status {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 40px;
+	padding: 0 22px 0 26px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0;
+}
+.zair .zair-phone__island { width: 74px; height: 22px; border-radius: 12px; background: #0b0f19; }
+.zair .zair-phone__sys { display: flex; align-items: flex-end; gap: 2px; height: 10px; }
+.zair .zair-phone__sys i { display: block; width: 3px; border-radius: 1px; background: var(--z26-color-navy); }
+.zair .zair-phone__sys i:nth-child(1) { height: 5px; }
+.zair .zair-phone__sys i:nth-child(2) { height: 7.5px; }
+.zair .zair-phone__sys i:nth-child(3) { height: 10px; }
+.zair .zair-phone__head {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 16px 14px;
+	border-bottom: 1px solid #e8edf4;
+}
+.zair .zair-phone__avatar {
+	display: grid;
+	place-items: center;
+	flex: none;
+	width: 38px; height: 38px;
+	border-radius: 50%;
+	background: var(--zair-gradient-cta);
+	color: #fff;
+}
+.zair .zair-phone__avatar svg { width: 20px; height: 20px; }
+.zair .zair-phone__who strong { display: block; font-size: 14px; line-height: 18px; }
+.zair .zair-phone__who span { display: flex; align-items: center; gap: 6px; color: #5f6b80; font-size: 12px; letter-spacing: 0; }
+.zair .zair-live {
+	width: 7px; height: 7px;
+	border-radius: 50%;
+	background: #34b356;
+	box-shadow: 0 0 0 3px rgba(52, 179, 86, .2);
+	animation: zair-live 1.6s ease-in-out infinite;
+}
+@keyframes zair-live { 50% { box-shadow: 0 0 0 6px rgba(52, 179, 86, 0); } }
+.zair .zair-phone__thread {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 10px;
+	padding: 18px 14px;
+	background: #f6f8fb;
+}
+.zair .zair-msg {
+	max-width: 82%;
+	padding: 10px 13px;
+	border-radius: 16px;
+	font-weight: 500;
+}
+.zair .zair-msg--ai {
+	align-self: flex-start;
+	border-bottom-left-radius: 5px;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0, 6, 64, .1);
+}
+.zair .zair-msg--caller {
+	align-self: flex-end;
+	border-bottom-right-radius: 5px;
+	background: var(--zair-gradient-action);
+	font-weight: 600;
+}
+.zair .zair-msg--typing { display: flex; gap: 4px; padding: 13px 14px; }
+.zair .zair-msg--typing i {
+	width: 6px; height: 6px;
+	border-radius: 50%;
+	background: #9aa6ba;
+	animation: zair-typing 1.2s ease-in-out infinite;
+}
+.zair .zair-msg--typing i:nth-child(2) { animation-delay: .15s; }
+.zair .zair-msg--typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes zair-typing { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+.zair .zair-phone__controls {
+	display: flex;
+	justify-content: space-between;
+	padding: 16px 18px 22px;
+	background: #fff;
+}
+.zair .zair-phone__ctl {
+	display: grid;
+	place-items: center;
+	width: 44px; height: 44px;
+	border-radius: 50%;
+	background: #eef2f8;
+	color: var(--z26-color-navy);
+}
+.zair .zair-phone__ctl svg { width: 19px; height: 19px; }
+.zair .zair-phone__ctl--end { background: #e5484d; color: #fff; }
+.zair .zair-phone__ctl--end svg { width: 22px; height: 22px; }
+
+/* Entrance: photo, then phone, then the messages in conversation order. */
+.zair-hero-anim .zair .zair-hero__media:not([data-zair-hero="in"]) :is(.zair-hero__photo, .zair-phone),
+.zair .zair-hero__media[data-zair-hero="pending"] :is(.zair-hero__photo, .zair-phone) { opacity: 0; transform: translate3d(0, 40px, 0) scale(.97); }
+.zair-hero-anim .zair .zair-hero__media:not([data-zair-hero="in"]) .zair-msg,
+.zair .zair-hero__media[data-zair-hero="pending"] .zair-msg { opacity: 0; transform: translate3d(0, 10px, 0) scale(.96); }
+.zair .zair-hero__media[data-zair-hero] :is(.zair-hero__photo, .zair-phone) { transition: opacity 1000ms var(--zair-ease), transform 1200ms var(--zair-ease); }
+.zair .zair-hero__media[data-zair-hero] .zair-phone { transition-delay: 220ms; }
+.zair .zair-hero__media[data-zair-hero] .zair-msg { transition: opacity 500ms var(--zair-ease), transform 600ms var(--zair-ease); }
+.zair .zair-hero__media[data-zair-hero] .zair-msg:nth-child(1) { transition-delay: 900ms; }
+.zair .zair-hero__media[data-zair-hero] .zair-msg:nth-child(2) { transition-delay: 1700ms; }
+.zair .zair-hero__media[data-zair-hero] .zair-msg:nth-child(3) { transition-delay: 2400ms; }
+
+/* ==========================================================================
+   2: 24/7/365 coverage
+   ========================================================================== */
+.zair .zair-coverage { padding: calc(130px + var(--zair-section-space)) 0 var(--zair-section-space); }
+.zair .zair-section-head { max-width: 860px; margin-inline: auto; text-align: center; }
+.zair .zair-section-head .zair-type-lead { margin-top: 14px; }
+.zair .zair-coverage__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 16px;
+	margin-top: 44px;
+}
+.zair .zair-card {
+	position: relative;
+	padding: 34px 32px 36px;
+	border-radius: var(--zair-radius-card);
+	background: #fff;
+	box-shadow: var(--zair-shadow-card);
+	transition: transform 320ms var(--zair-ease), box-shadow 320ms var(--zair-ease);
+}
+.zair .zair-card::before {
+	position: absolute;
+	top: 0; left: 32px; right: 32px;
+	height: 4px;
+	border-radius: 0 0 4px 4px;
+	background: var(--zair-gradient-action);
+	content: "";
+}
+.zair .zair-card h3 { margin-top: 22px; }
+.zair .zair-card p { margin-top: 10px; }
+@media (hover: hover) and (pointer: fine) {
+	.zair .zair-card:hover { transform: translateY(-4px); box-shadow: 0 12px 34px rgba(0, 6, 64, .2); }
+}
+
+/* ==========================================================================
+   3: Especially impactful for organizations that...
+   ========================================================================== */
+.zair .zair-orgs { padding-bottom: var(--zair-section-space); }
+.zair .zair-orgs__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	align-items: center;
+	gap: 64px;
+}
+.zair .zair-orgs__photo {
+	position: relative;
+	padding: 0 0 28px 28px;
+}
+.zair .zair-orgs__photo::before {
+	position: absolute;
+	inset: 28px 28px 0 0;
+	border-radius: var(--zair-radius-card);
+	background: var(--zair-gradient-lavender);
+	content: "";
+}
+.zair .zair-orgs__photo img {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 5 / 4;
+	object-fit: cover;
+	object-position: 45% 40%;
+	border-radius: var(--zair-radius-card);
+	box-shadow: 0 18px 44px rgba(0, 6, 64, .2);
+}
+.zair .zair-orgs h2 { font-size: 40px; line-height: 43px; }
+.zair .zair-checklist { margin-top: 24px; }
+.zair .zair-checklist li {
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	padding: 14px 0;
+	border-top: 1px solid rgba(42, 115, 203, .2);
+	font-size: 17px;
+	line-height: 23px;
+}
+.zair .zair-checklist li:last-child { border-bottom: 1px solid rgba(42, 115, 203, .2); }
+.zair .zair-checklist li::before {
+	flex: none;
+	width: 22px; height: 22px;
+	margin-top: 1px;
+	border-radius: 50%;
+	background: #e6f0fb url("../icons/check.svg") center / 11px auto no-repeat;
+	content: "";
+}
+.zair .zair-orgs .zair-btn { margin-top: 28px; }
+
+/* ==========================================================================
+   4: Call examples (the two product images from the current page)
+   ========================================================================== */
+.zair .zair-calls { padding-bottom: var(--zair-section-space); }
+.zair .zair-calls__panel {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 24px;
+	padding: 40px;
+	border-radius: 32px;
+	background: var(--zair-gradient-lavender);
+}
+.zair .zair-call {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border-radius: var(--zair-radius-card);
+	background: #fff;
+	box-shadow: 0 10px 30px rgba(0, 6, 64, .16);
+	transition: transform 320ms var(--zair-ease), box-shadow 320ms var(--zair-ease);
+}
+.zair .zair-call__img { overflow: hidden; aspect-ratio: 1000 / 895; }
+.zair .zair-call__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--zair-ease); }
+.zair .zair-call figcaption {
+	display: flex;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 24px 28px 28px;
+	font-size: 19px;
+	line-height: 25px;
+	font-weight: 600;
+	letter-spacing: -.02em;
+}
+.zair .zair-call .zair-icon { width: 40px; height: 40px; }
+@media (hover: hover) and (pointer: fine) {
+	.zair .zair-call:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0, 6, 64, .24); }
+	.zair .zair-call:hover .zair-call__img img { transform: scale(1.03); }
+}
+
+/* ==========================================================================
+   5: Minimize risk while maintaining accuracy
+   ========================================================================== */
+.zair .zair-risk { padding-bottom: var(--zair-section-space); }
+.zair .zair-risk__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+	align-items: center;
+	gap: 64px;
+}
+.zair .zair-risk__intro { margin-top: 16px; font-size: 18px; line-height: 24px; }
+.zair .zair-risk__points { margin-top: 28px; }
+.zair .zair-point {
+	display: flex;
+	gap: 20px;
+	padding: 24px 0;
+	border-top: 1px solid rgba(42, 115, 203, .2);
+}
+.zair .zair-point p { margin-top: 6px; }
+.zair .zair-risk__photo {
+	position: relative;
+	overflow: hidden;
+	border-radius: var(--zair-radius-card);
+	box-shadow: 0 18px 44px rgba(0, 6, 64, .2);
+	aspect-ratio: 4 / 5;
+}
+.zair .zair-risk__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
+.zair .zair-risk__photo::after {
+	position: absolute;
+	inset: auto 0 0 0;
+	height: 45%;
+	background: linear-gradient(to top, rgba(0, 6, 64, .55), transparent);
+	content: "";
+}
+.zair .zair-shield {
+	position: absolute;
+	left: 24px; bottom: 24px;
+	z-index: 1;
+	display: grid;
+	place-items: center;
+	width: 72px; height: 72px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, .95);
+	box-shadow: 0 12px 30px rgba(0, 6, 64, .3);
+}
+
+/* ==========================================================================
+   6: Results
+   ========================================================================== */
+.zair .zair-results {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	padding: var(--zair-section-space) 0;
+	background: #f4f6f9;
+}
+.zair .zair-results__wave { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.zair .zair-results__wave canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.zair .zair-results__grid {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: 16px;
+	margin-top: 44px;
+}
+.zair .zair-result {
+	grid-column: span 2;
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	padding: 30px 28px 32px;
+	border-radius: var(--zair-radius-card);
+	background: #fff;
+	box-shadow: var(--zair-shadow-card);
+	font-size: 17px;
+	line-height: 23px;
+	transition: transform 320ms var(--zair-ease), box-shadow 320ms var(--zair-ease);
+}
+.zair .zair-result:nth-child(4) { grid-column: 2 / span 2; }
+@media (hover: hover) and (pointer: fine) {
+	.zair .zair-result:hover { transform: translateY(-4px); box-shadow: 0 12px 34px rgba(0, 6, 64, .2); }
+}
+.zair .zair-wave-toggle {
+	position: absolute;
+	right: 16px; bottom: 16px;
+	z-index: 3;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px; height: 44px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--z26-color-blue);
+	cursor: pointer;
+}
+.zair .zair-wave-toggle[hidden] { display: none; }
+.zair .zair-wave-toggle::before {
+	width: 0; height: 0;
+	margin-left: 3px;
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	border-left: 12px solid currentColor;
+	content: "";
+}
+.zair .zair-wave-toggle[aria-label^="Pause"]::before {
+	width: 14px; height: 16px;
+	margin-left: 0;
+	border: 0;
+	background: linear-gradient(to right, currentColor 0 4px, transparent 4px 9px, currentColor 9px 13px);
+}
+
+/* ==========================================================================
+   7: Closing CTA card (ZAC page pattern)
+   ========================================================================== */
+.zair .zair-cta { padding: var(--zair-section-space) 0; }
+.zair .zair-cta__card {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	padding: 76px 48px;
+	border-radius: 32px;
+	background: var(--zair-gradient-cta);
+	box-shadow: 0 20px 50px rgba(0, 6, 64, .28);
+	color: #fff;
+	text-align: center;
+}
+.zair .zair-cta__card::after {
+	position: absolute;
+	left: 0; bottom: 0;
+	z-index: -1;
+	width: min(620px, 70%);
+	aspect-ratio: 486 / 281;
+	background: url("../icons/zultys-mark-outline.svg") left bottom / 100% auto no-repeat;
+	opacity: .12;
+	content: "";
+}
+.zair .zair-cta__card h2 { max-width: 760px; margin-inline: auto; }
+.zair .zair-cta__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (min-width: 1500px) {
+	.zair .zair-hero__inner { min-height: 600px; }
+}
+
+@media (max-width: 1100px) {
+	.zair .zair-type-hero { font-size: 54px; line-height: 56px; }
+	.zair .zair-type-section { font-size: 44px; line-height: 46px; }
+	.zair .zair-type-card { font-size: 26px; line-height: 28px; }
+	.zair .zair-hero__inner { gap: 0 32px; min-height: 500px; }
+	.zair .zair-hero__subtitle { font-size: 24px; line-height: 27px; }
+	.zair .zair-hero__media { min-height: 470px; }
+	.zair .zair-phone { width: 236px; margin-top: 110px; }
+	.zair .zair-phone__screen { min-height: 420px; }
+	.zair .zair-card { padding: 30px 24px 32px; }
+	.zair .zair-card::before { left: 24px; right: 24px; }
+	.zair .zair-orgs__inner, .zair .zair-risk__inner { gap: 40px; }
+	.zair .zair-orgs h2 { font-size: 34px; line-height: 37px; }
+	.zair .zair-calls__panel { padding: 28px; gap: 18px; }
+}
+
+@media (max-width: 900px) {
+	.zair .zair-coverage__grid { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
+	.zair .zair-orgs__inner, .zair .zair-risk__inner { grid-template-columns: 1fr; }
+	.zair .zair-orgs__photo { max-width: 620px; }
+	.zair .zair-risk__photo { order: -1; aspect-ratio: 16 / 10; }
+	.zair .zair-results__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.zair .zair-result, .zair .zair-result:nth-child(4) { grid-column: auto; }
+	.zair .zair-result:nth-child(5) { grid-column: 1 / -1; }
+}
+
+@media (max-width: 767px) {
+	.zair { --zair-gutter: 20px; --zair-radius-card: 22px; }
+	.zair .zair-type-hero { font-size: 42px; line-height: 44px; }
+	.zair .zair-type-section { font-size: 32px; line-height: 35px; }
+	.zair .zair-type-card { font-size: 24px; line-height: 26px; }
+
+	.zair .zair-hero__inner { display: flex; flex-direction: column; align-items: stretch; min-height: 0; padding-top: 36px; }
+	.zair .zair-hero__copy { padding-bottom: 0; }
+	.zair .zair-hero__subtitle { font-size: 22px; line-height: 25px; }
+	.zair .zair-hero__body { font-size: 17px; line-height: 23px; }
+	.zair .zair-hero__media { min-height: 0; margin: 32px 0 -110px; }
+	.zair .zair-hero__photo { position: relative; width: 88%; margin-left: auto; aspect-ratio: 4 / 3.3; }
+	.zair .zair-phone { width: 206px; margin-top: -170px; padding: 8px; border-radius: 38px; font-size: 12px; line-height: 16px; }
+	.zair .zair-phone__screen { min-height: 380px; border-radius: 31px; }
+	.zair .zair-phone__head { padding: 8px 12px 12px; }
+	.zair .zair-phone__ctl { width: 38px; height: 38px; }
+	.zair .zair-coverage { padding-top: calc(110px + 64px); }
+
+	.zair .zair-section-head { text-align: left; }
+	.zair .zair-orgs__photo { padding: 0 0 18px 18px; }
+	.zair .zair-orgs__photo::before { inset: 18px 18px 0 0; }
+	.zair .zair-orgs h2 { font-size: 28px; line-height: 31px; }
+	.zair .zair-checklist li { font-size: 16px; line-height: 22px; }
+
+	.zair .zair-calls__panel { grid-template-columns: 1fr; padding: 16px; gap: 16px; border-radius: 26px; }
+	.zair .zair-call figcaption { padding: 20px; font-size: 17px; line-height: 23px; }
+
+	.zair .zair-results__grid { grid-template-columns: 1fr; }
+	.zair .zair-result:nth-child(5) { grid-column: auto; }
+	.zair .zair-wave-toggle { display: none; }
+
+	.zair .zair-cta__card { padding: 56px 22px; border-radius: 26px; }
+	.zair .zair-cta__card::after { width: 110%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.zair *, .zair *::before, .zair *::after {
+		animation: none !important;
+		transition: none !important;
+		scroll-behavior: auto !important;
+	}
+	.zair [data-zair-reveal="pending"] { opacity: 1; transform: none; }
+	.zair-hero-anim .zair .zair-hero__media *, .zair .zair-hero__media[data-zair-hero] * { opacity: 1 !important; }
+	.zair .zair-hero__media :is(.zair-hero__photo, .zair-phone, .zair-msg), .zair .zair-hero__photo img { transform: none !important; }
+}
+
+@media (forced-colors: active) {
+	.zair .zair-btn { border-color: ButtonText; }
+}
