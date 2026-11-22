@@ -19,7 +19,8 @@ Copy the one-line inline `<script>` from the page `<head>` (adds `zair-hero-anim
 ## Content and assets
 
 - **Copy** is the current zultys.com page, verbatim. Headings were changed from all caps to title case, and two small grammar fixes were made: "Requires different levels of users" → "Require…", "customer-critical need" → "…needs".
-- **Hero phone** is HTML/CSS (no image). It reproduces the device and app chrome of the homepage hero phone (`hero-reveal/phone-clean-source-20261020.webp`) with the example conversation from the old hero graphic ("Northbridge Outfitters").
+- **Hero phone** is HTML/CSS (no image): a black device with an Android-style green chat (sent bubbles green, caller bubbles grey). The conversation extends the old hero example ("Northbridge Outfitters"); the return-policy answer, "Read more" link and timestamps are illustrative copy for a fictional business, and the link is not clickable because the phone is decorative (`aria-hidden`).
+- **Icons from the redesign homepage**: `ai-sparkle.svg` (homepage `d3d29.svg`, the spotlight list bullet) replaces the checkmarks in the Organizations list; `stars-5.svg` (homepage `9311e.svg`, survey stars) sits above the logo-strip headline.
 
 - **Organizations composition**: person cutout from Pexels photo 5717729 (background removed with `rembg`), with HTML product UI around it. Stats, menu items and caller details in that UI are illustrative.
 - **Hero "AI at work" layer** (`.zair-ops`, behind the phone): decorative, `aria-hidden` wireframe panels (transcription bars, approved sources, intent, instructions, routing, sentiment). All names, extensions and percentages are illustrative, not product data. Animations are CSS-only and stop under `prefers-reduced-motion`.

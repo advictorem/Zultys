@@ -265,16 +265,17 @@ def build():
 						<span class="zair-phone__more"><i></i><i></i><i></i></span>
 					</div>
 					<div class="zair-phone__thread">
-						<p class="zair-phone__day"><span>Today</span></p>
+						<p class="zair-phone__event">9:00 AM</p>
+						<p class="zair-phone__event zair-phone__event--call">{phone}Incoming call · Answered by AI</p>
 						<p class="zair-msg zair-msg--ai">Hello, what can I help you with today?<small>9:00 AM</small></p>
-						<div class="zair-msg-row"><span class="zair-phone__avatar zair-phone__avatar--sm">{bubble}</span><p class="zair-msg zair-msg--caller">What’s your return policy?<small>Call 9:00 AM</small></p></div>
-						<p class="zair-msg zair-msg--ai zair-msg--typing"><i></i><i></i><i></i></p>
+						<div class="zair-msg-row"><span class="zair-phone__avatar zair-phone__avatar--sm zair-phone__avatar--caller">JM</span><p class="zair-msg zair-msg--caller">What’s your return policy?<small>9:00 AM</small></p></div>
+						<p class="zair-msg zair-msg--ai">Unused items can be returned within 30 days with a receipt for a full refund, and exchanges are always free. <span class="zair-msg__link">Read more</span><small>9:01 AM</small></p>
+						<p class="zair-msg zair-msg--ai">Is there anything else I can help you with today?<small>9:01 AM</small></p>
 					</div>
-					<div class="zair-phone__bar"><span>Live call · Northbridge Outfitters</span><span>00:42</span>{xsmall}</div>
 					<div class="zair-phone__compose">
 						<span class="zair-phone__plus">+</span>
-						<span class="zair-phone__input">AI is responding…</span>
-						<span class="zair-phone__tools">{bulb}{smile}{send}</span>
+						<span class="zair-phone__input">Type your message</span>
+						<span class="zair-phone__tools">{smile}{send}</span>
 					</div>
 				</div>
 			</div>
@@ -290,6 +291,7 @@ def build():
 <section class="zair-logos" aria-labelledby="zair-logos-title">
 	<div class="zair-container zair-container--wide zair-logos__inner">
 		<div class="zair-logos__head">
+			<img class="zair-logos__stars" src="/assets/ai-receptionist/icons/stars-5.svg" width="97" height="17" alt="5 out of 5 stars">
 			<h2 id="zair-logos-title" class="zair-type-section">Trusted by Thousands of Businesses</h2>
 			<p class="zair-logos__lead">From healthcare and education to legal and local businesses, organizations rely on Zultys</p>
 		</div>
