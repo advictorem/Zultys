@@ -122,6 +122,21 @@
 	})();
 
 	/* ------------------------------------------------------------------
+	 * Logo strip: CSS marquee that pauses on hover/focus; the button
+	 * gives a persistent pause (WCAG 2.2.2). Reduced motion: no animation.
+	 * ------------------------------------------------------------------ */
+	(function marquee() {
+		var strip = $('[data-zair-marquee]');
+		var button = $('[data-zair-marquee-toggle]');
+		if (!strip || !button) return;
+		if (reduceMotion.matches) { button.hidden = true; return; }
+		button.addEventListener('click', function () {
+			var paused = strip.classList.toggle('is-paused');
+			button.setAttribute('aria-label', (paused ? 'Play' : 'Pause') + ' logo animation');
+		});
+	})();
+
+	/* ------------------------------------------------------------------
 	 * Staging shell only: announcement dismiss + simple mobile menu.
 	 * ------------------------------------------------------------------ */
 	(function shell() {

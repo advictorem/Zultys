@@ -4,7 +4,8 @@ Usage: python3 tools/process_ai_assets.py <source_dir> <out_dir>
 
 Sources (not stored in the repo):
   px-11396926.jpg  Pexels photo 11396926 (yi lu), hero caller
-  px-10375878.jpg  Pexels photo 10375878, small business owner on a call
+  person-on-call-*.webp/png come from Pexels photo 5717729 with the background
+                   removed (rembg, isnet-general-use model); see docs.
   px-6812429.jpg   Pexels photo 6812429, dental clinic front desk
   phone-approved-sources.jpg / phone-transfer.jpg  product images from the
                    current zultys.com page (Image_Modiule4-copy.jpg / Image_Modiule4.jpg)
@@ -19,7 +20,6 @@ os.makedirs(OUT, exist_ok=True)
 # name: (file, crop box as fractions (l, t, r, b) or None, widths)
 JOBS = {
     "hero-caller": ("px-11396926.jpg", (0.10, 0.0, 0.80, 1.0), [1400, 900, 600]),
-    "business-owner": ("px-10375878.jpg", (0.0, 0.0, 0.82, 1.0), [1400, 800]),
     "front-desk": ("px-6812429.jpg", (0.0, 0.0, 1.0, 1.0), [1400, 800]),
     "phone-approved-sources": ("phone-approved-sources.jpg", None, [1000, 640]),
     "phone-transfer": ("phone-transfer.jpg", None, [1000, 640]),

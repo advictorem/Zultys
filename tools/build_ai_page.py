@@ -36,8 +36,9 @@ ICONS = {
 
 
 def icon(name, cls=""):
-    return (f'<svg class="zair-icon {cls}".strip() viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
-            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{ICONS[name]}</svg>').replace('".strip()', '"').replace('zair-icon "', 'zair-icon"')
+    classes = f"zair-icon {cls}".strip()
+    return (f'<svg class="{classes}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{ICONS[name]}</svg>')
 
 
 def pic(name, widths, sizes, w, h, alt, cls="", lazy=True, extra=""):
@@ -72,12 +73,41 @@ RISK = [
     ("shield", "No Hallucinations!",
      "AI Receptionist pulls only from explicitly approved data sources and can be configured to route callers to an expert who can help, rather than generating inaccurate responses when the information is unavailable."),
 ]
-RESULTS = [
-    ("sentiment", "Call recordings and sentiment analysis indicators for continuous service improvement"),
-    ("nomiss", "No missed calls or slow responses, reducing the number of lost leads and frustrated customers"),
-    ("frontdesk", "A consistent, professional “front desk” experience that’s always available"),
-    ("overhead", "Lower overhead to handle complex or customer-critical needs"),
-    ("dtmf", "Flexibility enables callers to use voice or DTMF digit entry — improving the customer experience"),
+RESULTS = [  # titles are new (short labels for the current page's bullets)
+    ("sentiment", "Continuous Improvement", "Call recordings and sentiment analysis indicators for continuous service improvement"),
+    ("nomiss", "No Missed Calls", "No missed calls or slow responses, reducing the number of lost leads and frustrated customers"),
+    ("frontdesk", "Always-On Front Desk", "A consistent, professional “front desk” experience that’s always available"),
+    ("overhead", "Lower Overhead", "Lower overhead to handle complex or customer-critical needs"),
+    ("dtmf", "Voice or Keypad Entry", "Flexibility enables callers to use voice or DTMF digit entry — improving the customer experience"),
+]
+
+LOGOS = [  # testimonial logos from the redesign homepage, see tools/process_logos.py
+    ("battle-creek-family-care", "Battle Creek Family Care", 352, 120),
+    ("brandywine-communities", "Brandywine Communities", 219, 120),
+    ("desert-senita", "Desert Senita Community Health Center", 288, 120),
+    ("encompass-church", "Encompass Church", 162, 120),
+    ("lawall-prosthetic-orthotic", "Lawall Prosthetics & Orthotics", 520, 110),
+    ("outdoor-lighting-perspectives", "Outdoor Lighting Perspectives", 520, 57),
+    ("prosper-isd", "Prosper ISD", 108, 120),
+    ("show-me-real-estate", "Show-Me Real Estate", 176, 120),
+    ("sports-and-imports-autos", "Sports and Imports Autos", 134, 120),
+    ("tate-law-group", "Tate Law Group", 304, 120),
+    ("inett", "i-NETT", 350, 120),
+]
+
+FAQ = [  # PLACEHOLDER copy: to be replaced with approved answers
+    ("What is Zultys AI Receptionist?",
+     "Placeholder answer. Zultys AI Receptionist is a 24/7 conversational front line that answers questions, guides callers, and routes them to the right person when needed."),
+    ("Where does the AI get its answers?",
+     "Placeholder answer. It uses only approved sources, like your website, FAQs, and documents, that administrators choose and control."),
+    ("What happens when the AI can’t answer a question?",
+     "Placeholder answer. It transfers the call to a department that can assist, with context, so callers never repeat themselves."),
+    ("Does it work after business hours?",
+     "Placeholder answer. Yes. It answers every call instantly, around the clock, and captures after-hours leads."),
+    ("Can callers use the keypad instead of speaking?",
+     "Placeholder answer. Yes. Callers can use voice or DTMF digit entry."),
+    ("How do I get started?",
+     "Placeholder answer. Request a demo and the Zultys team will walk you through setup and configuration for your organization."),
 ]
 
 
@@ -86,11 +116,21 @@ def build():
     footer = open(os.path.join(HERE, "ai-shell-footer.html")).read()
 
     coverage = "\n".join(
-        f'''			<article class="zair-card" data-zair-reveal style="--zair-reveal-delay:{i * 90}ms">
-				{icon(ic)}
-				<h3 class="zair-type-feature">{t}</h3>
-				<p>{d}</p>
+        f'''			<article class="zair-proof-card" data-zair-reveal style="--zair-reveal-delay:{i * 90}ms">
+				{icon(ic, "zair-icon--sky")}
+				<h3 class="zair-proof-card__title">{t}</h3>
+				<p class="zair-proof-card__copy">{d}</p>
 			</article>''' for i, (ic, t, d) in enumerate(COVERAGE))
+    logo_items = "\n".join(
+        f'\t\t\t\t\t<li><img src="{A}/img/logos/{slug}.png" width="{round(w / 2)}" height="{round(h / 2)}" alt="{name}" loading="lazy" decoding="async"></li>'
+        for slug, name, w, h in LOGOS)
+    logo_dupes = logo_items.replace('<li><img', '<li aria-hidden="true"><img').replace('" alt="', '" data-alt="')
+    logo_dupes = __import__("re").sub(r'data-alt="[^"]*"', 'alt=""', logo_dupes)
+    faq = "\n".join(
+        f'''				<details class="zair-faq__item">
+					<summary><span>{q}</span><span class="zair-faq__icon" aria-hidden="true"></span></summary>
+					<div class="zair-faq__answer"><p>{ans}</p></div>
+				</details>''' for q, ans in FAQ)
     orgs = "\n".join(f"\t\t\t\t\t<li>{x}</li>" for x in ORGS)
     calls = "\n".join(
         f'''			<figure class="zair-call" data-zair-reveal style="--zair-reveal-delay:{i * 90}ms">
@@ -108,17 +148,22 @@ def build():
 						</div>
 					</div>''' for ic, t, d in RISK)
     results = "\n".join(
-        f'''			<div class="zair-result" data-zair-reveal style="--zair-reveal-delay:{(i % 3) * 80}ms">
-				{icon(ic)}
-				<p>{t}</p>
-			</div>''' for i, (ic, t) in enumerate(RESULTS))
+        f'''			<article class="zair-result" data-zair-reveal style="--zair-reveal-delay:{(i % 2) * 80}ms">
+				<div class="zair-result__head"><span class="zair-result__badge">{icon(ic)}</span><h3 class="zair-result__title">{t}</h3></div>
+				<p>{d}</p>
+			</article>''' for i, (ic, t, d) in enumerate(RESULTS))
 
     sparkle = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 3c.6 4 2.6 6 6.6 6.6-4 .6-6 2.6-6.6 6.6-.6-4-2.6-6-6.6-6.6C7.4 9 9.4 7 10 3z"/><path d="M18 13.5c.3 1.9 1.2 2.8 3.1 3.1-1.9.3-2.8 1.2-3.1 3.1-.3-1.9-1.2-2.8-3.1-3.1 1.9-.3 2.8-1.2 3.1-3.1z"/></svg>'
     phone = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 16.4v2.9a1.9 1.9 0 0 1-2.1 1.9 18.9 18.9 0 0 1-8.2-2.9 18.6 18.6 0 0 1-5.7-5.7 18.9 18.9 0 0 1-2.9-8.3A1.9 1.9 0 0 1 4.5 2.2h2.9a1.9 1.9 0 0 1 1.9 1.6c.1.9.4 1.8.7 2.7a1.9 1.9 0 0 1-.4 2L8.3 9.7a15.2 15.2 0 0 0 5.7 5.7l1.2-1.2a1.9 1.9 0 0 1 2-.4c.9.3 1.8.6 2.7.7a1.9 1.9 0 0 1 1.6 1.9z"/></svg>'
-    mic = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>'
-    keypad = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6" cy="5" r="1.7"/><circle cx="12" cy="5" r="1.7"/><circle cx="18" cy="5" r="1.7"/><circle cx="6" cy="11" r="1.7"/><circle cx="12" cy="11" r="1.7"/><circle cx="18" cy="11" r="1.7"/><circle cx="6" cy="17" r="1.7"/><circle cx="12" cy="17" r="1.7"/><circle cx="18" cy="17" r="1.7"/><circle cx="12" cy="22" r="1.5"/></svg>'
-    speaker = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>'
     endcall = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 9c-3.4 0-6.6.9-8.9 2.6-.8.6-1 1.7-.5 2.5l1 1.6c.5.8 1.5 1.1 2.4.8l2.4-1c.7-.3 1.1-1 1.1-1.8v-1.4c1.6-.5 3.4-.5 5 0v1.4c0 .8.4 1.5 1.1 1.8l2.4 1c.9.3 1.9 0 2.4-.8l1-1.6c.5-.8.3-1.9-.5-2.5C18.6 9.9 15.4 9 12 9z"/></svg>'
+    bubble = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18.5l1.2-3.2A7.3 7.3 0 1 1 9 18.2z"/><path d="M9 10h6M9 13h4"/></svg>'
+    back = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>'
+    xmark = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+    xsmall = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg>'
+    bulb = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17h6M10 20h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/><path d="M18.5 3.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/></svg>'
+    smile = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.2c1.9 2 5.1 2 7 0M9 9.5h.01M15 9.5h.01"/></svg>'
+    send = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M21 3L3 10.5l7 2.5 2.5 7z"/><path d="M10 13l11-10"/></svg>'
+
 
     html = f'''<!DOCTYPE html>
 <html lang="en">
@@ -164,25 +209,30 @@ def build():
 			<div class="zair-hero__photo">
 				{pic("hero-caller", [600, 900, 1400], "(max-width: 767px) 92vw, 560px", 900, 857, "Smiling professional on a call with a business", lazy=False)}
 			</div>
-			<!-- Phone mockup: the example conversation from the current page's hero graphic,
-			     redrawn in the redesign's chat style (Mobile ZAC). Decorative. -->
+			<!-- Phone mockup: same device and app chrome as the homepage hero phone,
+			     showing the example conversation from the current page. Decorative. -->
 			<div class="zair-phone" aria-hidden="true">
+				<span class="zair-phone__btn zair-phone__btn--a"></span><span class="zair-phone__btn zair-phone__btn--b"></span><span class="zair-phone__btn zair-phone__btn--c"></span>
 				<div class="zair-phone__screen">
-					<div class="zair-phone__status"><span>10:20</span><span class="zair-phone__island"></span><span class="zair-phone__sys"><i></i><i></i><i></i></span></div>
+					<span class="zair-phone__notch"></span>
 					<div class="zair-phone__head">
-						<span class="zair-phone__avatar">{sparkle}</span>
-						<span class="zair-phone__who"><strong>Northbridge Outfitters</strong><span><b class="zair-live"></b>AI Receptionist · 0:42</span></span>
+						<span class="zair-phone__back">{back}</span>
+						<span class="zair-phone__avatar">{bubble}</span>
+						<span class="zair-phone__who"><strong>Northbridge Outfitters</strong><span>AI Receptionist — 00:42</span></span>
+						<span class="zair-phone__x">{xmark}</span>
+						<span class="zair-phone__more"><i></i><i></i><i></i></span>
 					</div>
 					<div class="zair-phone__thread">
-						<p class="zair-msg zair-msg--ai">Hello, what can I help you with today?</p>
-						<p class="zair-msg zair-msg--caller">What’s your return policy?</p>
+						<p class="zair-phone__day"><span>Today</span></p>
+						<p class="zair-msg zair-msg--ai">Hello, what can I help you with today?<small>9:00 AM</small></p>
+						<div class="zair-msg-row"><span class="zair-phone__avatar zair-phone__avatar--sm">{bubble}</span><p class="zair-msg zair-msg--caller">What’s your return policy?<small>Call 9:00 AM</small></p></div>
 						<p class="zair-msg zair-msg--ai zair-msg--typing"><i></i><i></i><i></i></p>
 					</div>
-					<div class="zair-phone__controls">
-						<span class="zair-phone__ctl">{mic}</span>
-						<span class="zair-phone__ctl">{keypad}</span>
-						<span class="zair-phone__ctl">{speaker}</span>
-						<span class="zair-phone__ctl zair-phone__ctl--end">{endcall}</span>
+					<div class="zair-phone__bar"><span>Live call · Northbridge Outfitters</span><span>00:42</span>{xsmall}</div>
+					<div class="zair-phone__compose">
+						<span class="zair-phone__plus">+</span>
+						<span class="zair-phone__input">AI is responding…</span>
+						<span class="zair-phone__tools">{bulb}{smile}{send}</span>
 					</div>
 				</div>
 			</div>
@@ -193,10 +243,33 @@ def build():
 <main id="zair-content" tabindex="-1">
 
 <!-- =====================================================================
+     CUSTOMER LOGOS (scrolling strip; testimonial logos from the homepage)
+     ===================================================================== -->
+<section class="zair-logos" aria-label="Zultys customers">
+	<div class="zair-container zair-container--wide zair-logos__inner">
+		<p class="zair-logos__lead">{icon("shield", "zair-icon--solid")}<span>From healthcare and education to legal and local businesses, organizations rely on Zultys</span></p>
+		<div class="zair-marquee" data-zair-marquee>
+			<div class="zair-marquee__track">
+				<ul class="zair-marquee__list">
+{logo_items}
+				</ul>
+				<ul class="zair-marquee__list" aria-hidden="true">
+{logo_dupes}
+				</ul>
+			</div>
+		</div>
+		<button class="zair-marquee__toggle" type="button" data-zair-marquee-toggle aria-label="Pause logo animation"></button>
+	</div>
+</section>
+
+<!-- =====================================================================
      2: 24/7/365 RECEPTIONIST COVERAGE
      ===================================================================== -->
 <section class="zair-coverage" aria-labelledby="zair-coverage-title">
-	<div class="zair-container zair-container--wide">
+	<!-- Dotted wave behind the cards, as on the Education page (vendor/zultys-wave.js) -->
+	<div class="zair-coverage__wave" data-zair-wave aria-hidden="true"></div>
+	<button class="zair-wave-toggle" type="button" data-zair-wave-toggle aria-label="Pause background animation" hidden></button>
+	<div class="zair-container">
 		<div class="zair-section-head" data-zair-reveal>
 			<h2 class="zair-type-section" id="zair-coverage-title">24/7/365 Receptionist Coverage</h2>
 			<p class="zair-type-lead zair-text-blue">No Turnover, No Sick Days, No Ongoing Training</p>
@@ -212,9 +285,34 @@ def build():
      ===================================================================== -->
 <section class="zair-orgs" aria-labelledby="zair-orgs-title">
 	<div class="zair-container zair-orgs__inner">
-		<figure class="zair-orgs__photo" data-zair-reveal>
-			{pic("business-owner", [800, 1400], "(max-width: 900px) 100vw, 520px", 800, 650, "Small business owner taking a customer call at her laptop")}
-		</figure>
+		<!-- Person + product UI composition. Decorative; numbers and names are illustrative. -->
+		<div class="zair-scene" data-zair-reveal aria-hidden="true">
+			<div class="zair-scene__panel">
+				<div class="zair-scene__side">
+					<span class="zair-scene__brand"><img src="{A}/icons/zultys-mark-outline.svg" alt="" width="22" height="13"> ZAC</span>
+					<span class="is-active">AI Receptionist</span><span>Call Groups</span><span>Recordings</span><span>Data Sources</span><span>Roles &amp; Access</span>
+				</div>
+				<div class="zair-scene__stats">
+					<span><strong>1,284</strong>Calls answered</span>
+					<span><strong>312</strong>Transferred</span>
+				</div>
+			</div>
+			<div class="zair-scene__call">
+				<span class="zair-scene__label">Incoming call…</span>
+				<span class="zair-scene__dept">Front Desk</span>
+				<span class="zair-scene__caller">{sparkle}</span>
+				<strong>AI Receptionist</strong>
+				<span class="zair-scene__num">Answering · Northbridge Outfitters</span>
+				<span class="zair-scene__btns"><i class="end">{endcall}</i><i class="ok">{phone}</i></span>
+			</div>
+			<picture>
+				<source type="image/webp" srcset="{A}/img/person-on-call-600.webp 600w, {A}/img/person-on-call-900.webp 900w" sizes="(max-width: 767px) 70vw, 380px">
+				<img class="zair-scene__person" src="{A}/img/person-on-call.png" width="600" height="556" alt="" loading="lazy" decoding="async">
+			</picture>
+			<span class="zair-scene__badge zair-scene__badge--a">{icon("sources")}</span>
+			<span class="zair-scene__badge zair-scene__badge--b">{icon("shield")}</span>
+			<span class="zair-scene__badge zair-scene__badge--c">{icon("transfer")}</span>
+		</div>
 		<div data-zair-reveal style="--zair-reveal-delay:90ms">
 			<h2 class="zair-type-section" id="zair-orgs-title">Zultys AI Receptionist Is Especially Impactful for Organizations That:</h2>
 			<ul class="zair-checklist">
@@ -258,16 +356,33 @@ def build():
 <!-- =====================================================================
      6: RESULTS
      ===================================================================== -->
-<section class="zair-results" aria-labelledby="zair-results-title">
-	<!-- Animated dotted wave: same canvas routine as the Mobile ZAC section (vendor/zultys-wave.js) -->
-	<div class="zair-results__wave" data-zair-wave aria-hidden="true"></div>
-	<button class="zair-wave-toggle" type="button" data-zair-wave-toggle aria-label="Pause background animation" hidden></button>
-	<div class="zair-container zair-container--wide">
+<section class="zair-results zair-on-dark" aria-labelledby="zair-results-title">
+	<div class="zair-container">
 		<div class="zair-section-head" data-zair-reveal>
 			<h2 class="zair-type-section" id="zair-results-title">Results That Improve Both Service and Efficiency</h2>
 		</div>
 		<div class="zair-results__grid">
 {results}
+			<div class="zair-result zair-result--cta" data-zair-reveal style="--zair-reveal-delay:80ms">
+				<h3 class="zair-result__title">See AI Receptionist in Action</h3>
+				<a class="zair-btn zair-btn--gradient" href="{DEMO}">Get a Demo</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- =====================================================================
+     FAQ (PLACEHOLDER COPY)
+     ===================================================================== -->
+<section class="zair-faq" aria-labelledby="zair-faq-title">
+	<div class="zair-container zair-faq__inner">
+		<div class="zair-faq__intro" data-zair-reveal>
+			<h2 class="zair-type-section" id="zair-faq-title">Frequently Asked Questions</h2>
+			<p>Can’t find your answer? Our team is happy to help.</p>
+			<a class="zair-btn zair-btn--outline-light" href="{REQUEST_DEMO}">Talk to an Expert</a>
+		</div>
+		<div class="zair-faq__list" data-zair-reveal style="--zair-reveal-delay:90ms">
+{faq}
 		</div>
 	</div>
 </section>

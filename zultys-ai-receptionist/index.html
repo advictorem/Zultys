@@ -82,25 +82,30 @@
 					<img src="/assets/ai-receptionist/img/hero-caller.jpg" width="900" height="857" alt="Smiling professional on a call with a business" fetchpriority="high" decoding="async">
 				</picture>
 			</div>
-			<!-- Phone mockup: the example conversation from the current page's hero graphic,
-			     redrawn in the redesign's chat style (Mobile ZAC). Decorative. -->
+			<!-- Phone mockup: same device and app chrome as the homepage hero phone,
+			     showing the example conversation from the current page. Decorative. -->
 			<div class="zair-phone" aria-hidden="true">
+				<span class="zair-phone__btn zair-phone__btn--a"></span><span class="zair-phone__btn zair-phone__btn--b"></span><span class="zair-phone__btn zair-phone__btn--c"></span>
 				<div class="zair-phone__screen">
-					<div class="zair-phone__status"><span>10:20</span><span class="zair-phone__island"></span><span class="zair-phone__sys"><i></i><i></i><i></i></span></div>
+					<span class="zair-phone__notch"></span>
 					<div class="zair-phone__head">
-						<span class="zair-phone__avatar"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 3c.6 4 2.6 6 6.6 6.6-4 .6-6 2.6-6.6 6.6-.6-4-2.6-6-6.6-6.6C7.4 9 9.4 7 10 3z"/><path d="M18 13.5c.3 1.9 1.2 2.8 3.1 3.1-1.9.3-2.8 1.2-3.1 3.1-.3-1.9-1.2-2.8-3.1-3.1 1.9-.3 2.8-1.2 3.1-3.1z"/></svg></span>
-						<span class="zair-phone__who"><strong>Northbridge Outfitters</strong><span><b class="zair-live"></b>AI Receptionist · 0:42</span></span>
+						<span class="zair-phone__back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg></span>
+						<span class="zair-phone__avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18.5l1.2-3.2A7.3 7.3 0 1 1 9 18.2z"/><path d="M9 10h6M9 13h4"/></svg></span>
+						<span class="zair-phone__who"><strong>Northbridge Outfitters</strong><span>AI Receptionist — 00:42</span></span>
+						<span class="zair-phone__x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+						<span class="zair-phone__more"><i></i><i></i><i></i></span>
 					</div>
 					<div class="zair-phone__thread">
-						<p class="zair-msg zair-msg--ai">Hello, what can I help you with today?</p>
-						<p class="zair-msg zair-msg--caller">What’s your return policy?</p>
+						<p class="zair-phone__day"><span>Today</span></p>
+						<p class="zair-msg zair-msg--ai">Hello, what can I help you with today?<small>9:00 AM</small></p>
+						<div class="zair-msg-row"><span class="zair-phone__avatar zair-phone__avatar--sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18.5l1.2-3.2A7.3 7.3 0 1 1 9 18.2z"/><path d="M9 10h6M9 13h4"/></svg></span><p class="zair-msg zair-msg--caller">What’s your return policy?<small>Call 9:00 AM</small></p></div>
 						<p class="zair-msg zair-msg--ai zair-msg--typing"><i></i><i></i><i></i></p>
 					</div>
-					<div class="zair-phone__controls">
-						<span class="zair-phone__ctl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span>
-						<span class="zair-phone__ctl"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6" cy="5" r="1.7"/><circle cx="12" cy="5" r="1.7"/><circle cx="18" cy="5" r="1.7"/><circle cx="6" cy="11" r="1.7"/><circle cx="12" cy="11" r="1.7"/><circle cx="18" cy="11" r="1.7"/><circle cx="6" cy="17" r="1.7"/><circle cx="12" cy="17" r="1.7"/><circle cx="18" cy="17" r="1.7"/><circle cx="12" cy="22" r="1.5"/></svg></span>
-						<span class="zair-phone__ctl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></span>
-						<span class="zair-phone__ctl zair-phone__ctl--end"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 9c-3.4 0-6.6.9-8.9 2.6-.8.6-1 1.7-.5 2.5l1 1.6c.5.8 1.5 1.1 2.4.8l2.4-1c.7-.3 1.1-1 1.1-1.8v-1.4c1.6-.5 3.4-.5 5 0v1.4c0 .8.4 1.5 1.1 1.8l2.4 1c.9.3 1.9 0 2.4-.8l1-1.6c.5-.8.3-1.9-.5-2.5C18.6 9.9 15.4 9 12 9z"/></svg></span>
+					<div class="zair-phone__bar"><span>Live call · Northbridge Outfitters</span><span>00:42</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></div>
+					<div class="zair-phone__compose">
+						<span class="zair-phone__plus">+</span>
+						<span class="zair-phone__input">AI is responding…</span>
+						<span class="zair-phone__tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17h6M10 20h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/><path d="M18.5 3.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.2c1.9 2 5.1 2 7 0M9 9.5h.01M15 9.5h.01"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M21 3L3 10.5l7 2.5 2.5 7z"/><path d="M10 13l11-10"/></svg></span>
 					</div>
 				</div>
 			</div>
@@ -111,29 +116,72 @@
 <main id="zair-content" tabindex="-1">
 
 <!-- =====================================================================
+     CUSTOMER LOGOS (scrolling strip; testimonial logos from the homepage)
+     ===================================================================== -->
+<section class="zair-logos" aria-label="Zultys customers">
+	<div class="zair-container zair-container--wide zair-logos__inner">
+		<p class="zair-logos__lead"><svg class="zair-icon zair-icon--solid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2.6l7.4 2.9v5.9c0 4.8-3.1 8.7-7.4 10-4.3-1.3-7.4-5.2-7.4-10V5.5z"/><path class="a" d="M8.6 12l2.3 2.3 4.5-4.6"/></svg><span>From healthcare and education to legal and local businesses, organizations rely on Zultys</span></p>
+		<div class="zair-marquee" data-zair-marquee>
+			<div class="zair-marquee__track">
+				<ul class="zair-marquee__list">
+					<li><img src="/assets/ai-receptionist/img/logos/battle-creek-family-care.png" width="176" height="60" alt="Battle Creek Family Care" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/brandywine-communities.png" width="110" height="60" alt="Brandywine Communities" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/desert-senita.png" width="144" height="60" alt="Desert Senita Community Health Center" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/encompass-church.png" width="81" height="60" alt="Encompass Church" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/lawall-prosthetic-orthotic.png" width="260" height="55" alt="Lawall Prosthetics & Orthotics" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/outdoor-lighting-perspectives.png" width="260" height="28" alt="Outdoor Lighting Perspectives" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/prosper-isd.png" width="54" height="60" alt="Prosper ISD" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/show-me-real-estate.png" width="88" height="60" alt="Show-Me Real Estate" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/sports-and-imports-autos.png" width="67" height="60" alt="Sports and Imports Autos" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/tate-law-group.png" width="152" height="60" alt="Tate Law Group" loading="lazy" decoding="async"></li>
+					<li><img src="/assets/ai-receptionist/img/logos/inett.png" width="175" height="60" alt="i-NETT" loading="lazy" decoding="async"></li>
+				</ul>
+				<ul class="zair-marquee__list" aria-hidden="true">
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/battle-creek-family-care.png" width="176" height="60" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/brandywine-communities.png" width="110" height="60" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/desert-senita.png" width="144" height="60" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/encompass-church.png" width="81" height="60" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/lawall-prosthetic-orthotic.png" width="260" height="55" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/outdoor-lighting-perspectives.png" width="260" height="28" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/prosper-isd.png" width="54" height="60" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/show-me-real-estate.png" width="88" height="60" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/sports-and-imports-autos.png" width="67" height="60" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/tate-law-group.png" width="152" height="60" alt="" loading="lazy" decoding="async"></li>
+					<li aria-hidden="true"><img src="/assets/ai-receptionist/img/logos/inett.png" width="175" height="60" alt="" loading="lazy" decoding="async"></li>
+				</ul>
+			</div>
+		</div>
+		<button class="zair-marquee__toggle" type="button" data-zair-marquee-toggle aria-label="Pause logo animation"></button>
+	</div>
+</section>
+
+<!-- =====================================================================
      2: 24/7/365 RECEPTIONIST COVERAGE
      ===================================================================== -->
 <section class="zair-coverage" aria-labelledby="zair-coverage-title">
-	<div class="zair-container zair-container--wide">
+	<!-- Dotted wave behind the cards, as on the Education page (vendor/zultys-wave.js) -->
+	<div class="zair-coverage__wave" data-zair-wave aria-hidden="true"></div>
+	<button class="zair-wave-toggle" type="button" data-zair-wave-toggle aria-label="Pause background animation" hidden></button>
+	<div class="zair-container">
 		<div class="zair-section-head" data-zair-reveal>
 			<h2 class="zair-type-section" id="zair-coverage-title">24/7/365 Receptionist Coverage</h2>
 			<p class="zair-type-lead zair-text-blue">No Turnover, No Sick Days, No Ongoing Training</p>
 		</div>
 		<div class="zair-coverage__grid">
-			<article class="zair-card" data-zair-reveal style="--zair-reveal-delay:0ms">
-				<svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8.6" r="4.1"/><path class="a" d="M10.2 8.7l1.3 1.3 2.5-2.6"/><path class="a" d="M5.3 6.2a7.2 7.2 0 0 1 13.4 0" stroke-dasharray="0 2.6"/><path d="M2.5 15.2h2.7v6H2.5z"/><path d="M5.2 16.3l2.9-1.4h4.4a1.5 1.5 0 0 1 0 3H9.3"/><path d="M5.2 20.2h7.7l6.6-3.9a1.4 1.4 0 0 0-1.5-2.4l-4.2 2.4"/></svg>
-				<h3 class="zair-type-feature">Always Available</h3>
-				<p>Answers every call instantly with natural, conversational interactions — no hold music, no rigid menus.</p>
+			<article class="zair-proof-card" data-zair-reveal style="--zair-reveal-delay:0ms">
+				<svg class="zair-icon zair-icon--sky" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8.6" r="4.1"/><path class="a" d="M10.2 8.7l1.3 1.3 2.5-2.6"/><path class="a" d="M5.3 6.2a7.2 7.2 0 0 1 13.4 0" stroke-dasharray="0 2.6"/><path d="M2.5 15.2h2.7v6H2.5z"/><path d="M5.2 16.3l2.9-1.4h4.4a1.5 1.5 0 0 1 0 3H9.3"/><path d="M5.2 20.2h7.7l6.6-3.9a1.4 1.4 0 0 0-1.5-2.4l-4.2 2.4"/></svg>
+				<h3 class="zair-proof-card__title">Always Available</h3>
+				<p class="zair-proof-card__copy">Answers every call instantly with natural, conversational interactions — no hold music, no rigid menus.</p>
 			</article>
-			<article class="zair-card" data-zair-reveal style="--zair-reveal-delay:90ms">
-				<svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="6" width="12" height="12" rx="2.2"/><path d="M9.5 3v3M14.5 3v3M9.5 18v3M14.5 18v3M3 9.5h3M3 14.5h3M18 9.5h3M18 14.5h3"/><path class="a" d="M12 8.4c.3 2 1.3 3 3.3 3.3-2 .3-3 1.3-3.3 3.3-.3-2-1.3-3-3.3-3.3 2-.3 3-1.3 3.3-3.3z"/></svg>
-				<h3 class="zair-type-feature">Context Intelligence</h3>
-				<p>Identifies caller intent, filters spam, and transfers with context so customers never repeat themselves.</p>
+			<article class="zair-proof-card" data-zair-reveal style="--zair-reveal-delay:90ms">
+				<svg class="zair-icon zair-icon--sky" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="6" width="12" height="12" rx="2.2"/><path d="M9.5 3v3M14.5 3v3M9.5 18v3M14.5 18v3M3 9.5h3M3 14.5h3M18 9.5h3M18 14.5h3"/><path class="a" d="M12 8.4c.3 2 1.3 3 3.3 3.3-2 .3-3 1.3-3.3 3.3-.3-2-1.3-3-3.3-3.3 2-.3 3-1.3 3.3-3.3z"/></svg>
+				<h3 class="zair-proof-card__title">Context Intelligence</h3>
+				<p class="zair-proof-card__copy">Identifies caller intent, filters spam, and transfers with context so customers never repeat themselves.</p>
 			</article>
-			<article class="zair-card" data-zair-reveal style="--zair-reveal-delay:180ms">
-				<svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="13.6" r="7.4"/><path d="M9.8 3h4.4M12 3v3.2M18.2 6.6l1.6-1.6"/><path class="a" d="M12 13.6l3.2-3.2"/><path class="a" d="M12 8.2v1M17.4 13.6h-1M12 19v-1M6.6 13.6h1"/></svg>
-				<h3 class="zair-type-feature">Consistent Performance at Scale</h3>
-				<p>Handles unlimited concurrent calls and captures after-hours leads — turning your phone system into a revenue engine.</p>
+			<article class="zair-proof-card" data-zair-reveal style="--zair-reveal-delay:180ms">
+				<svg class="zair-icon zair-icon--sky" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="13.6" r="7.4"/><path d="M9.8 3h4.4M12 3v3.2M18.2 6.6l1.6-1.6"/><path class="a" d="M12 13.6l3.2-3.2"/><path class="a" d="M12 8.2v1M17.4 13.6h-1M12 19v-1M6.6 13.6h1"/></svg>
+				<h3 class="zair-proof-card__title">Consistent Performance at Scale</h3>
+				<p class="zair-proof-card__copy">Handles unlimited concurrent calls and captures after-hours leads — turning your phone system into a revenue engine.</p>
 			</article>
 		</div>
 	</div>
@@ -144,12 +192,34 @@
      ===================================================================== -->
 <section class="zair-orgs" aria-labelledby="zair-orgs-title">
 	<div class="zair-container zair-orgs__inner">
-		<figure class="zair-orgs__photo" data-zair-reveal>
+		<!-- Person + product UI composition. Decorative; numbers and names are illustrative. -->
+		<div class="zair-scene" data-zair-reveal aria-hidden="true">
+			<div class="zair-scene__panel">
+				<div class="zair-scene__side">
+					<span class="zair-scene__brand"><img src="/assets/ai-receptionist/icons/zultys-mark-outline.svg" alt="" width="22" height="13"> ZAC</span>
+					<span class="is-active">AI Receptionist</span><span>Call Groups</span><span>Recordings</span><span>Data Sources</span><span>Roles &amp; Access</span>
+				</div>
+				<div class="zair-scene__stats">
+					<span><strong>1,284</strong>Calls answered</span>
+					<span><strong>312</strong>Transferred</span>
+				</div>
+			</div>
+			<div class="zair-scene__call">
+				<span class="zair-scene__label">Incoming call…</span>
+				<span class="zair-scene__dept">Front Desk</span>
+				<span class="zair-scene__caller"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 3c.6 4 2.6 6 6.6 6.6-4 .6-6 2.6-6.6 6.6-.6-4-2.6-6-6.6-6.6C7.4 9 9.4 7 10 3z"/><path d="M18 13.5c.3 1.9 1.2 2.8 3.1 3.1-1.9.3-2.8 1.2-3.1 3.1-.3-1.9-1.2-2.8-3.1-3.1 1.9-.3 2.8-1.2 3.1-3.1z"/></svg></span>
+				<strong>AI Receptionist</strong>
+				<span class="zair-scene__num">Answering · Northbridge Outfitters</span>
+				<span class="zair-scene__btns"><i class="end"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 9c-3.4 0-6.6.9-8.9 2.6-.8.6-1 1.7-.5 2.5l1 1.6c.5.8 1.5 1.1 2.4.8l2.4-1c.7-.3 1.1-1 1.1-1.8v-1.4c1.6-.5 3.4-.5 5 0v1.4c0 .8.4 1.5 1.1 1.8l2.4 1c.9.3 1.9 0 2.4-.8l1-1.6c.5-.8.3-1.9-.5-2.5C18.6 9.9 15.4 9 12 9z"/></svg></i><i class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 16.4v2.9a1.9 1.9 0 0 1-2.1 1.9 18.9 18.9 0 0 1-8.2-2.9 18.6 18.6 0 0 1-5.7-5.7 18.9 18.9 0 0 1-2.9-8.3A1.9 1.9 0 0 1 4.5 2.2h2.9a1.9 1.9 0 0 1 1.9 1.6c.1.9.4 1.8.7 2.7a1.9 1.9 0 0 1-.4 2L8.3 9.7a15.2 15.2 0 0 0 5.7 5.7l1.2-1.2a1.9 1.9 0 0 1 2-.4c.9.3 1.8.6 2.7.7a1.9 1.9 0 0 1 1.6 1.9z"/></svg></i></span>
+			</div>
 			<picture>
-					<source type="image/webp" srcset="/assets/ai-receptionist/img/business-owner-800.webp 800w, /assets/ai-receptionist/img/business-owner-1400.webp 1400w" sizes="(max-width: 900px) 100vw, 520px">
-					<img src="/assets/ai-receptionist/img/business-owner.jpg" width="800" height="650" alt="Small business owner taking a customer call at her laptop" loading="lazy" decoding="async">
-				</picture>
-		</figure>
+				<source type="image/webp" srcset="/assets/ai-receptionist/img/person-on-call-600.webp 600w, /assets/ai-receptionist/img/person-on-call-900.webp 900w" sizes="(max-width: 767px) 70vw, 380px">
+				<img class="zair-scene__person" src="/assets/ai-receptionist/img/person-on-call.png" width="600" height="556" alt="" loading="lazy" decoding="async">
+			</picture>
+			<span class="zair-scene__badge zair-scene__badge--a"><svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="11" cy="5.6" rx="7" ry="2.6"/><path d="M4 5.6v11.8c0 1.4 3.1 2.6 7 2.6.4 0 .8 0 1.2-.1M18 5.6v5.6"/><path d="M4 11.5c0 1.4 3.1 2.6 7 2.6 1 0 2-.1 2.8-.2"/><circle class="a" cx="17.6" cy="17.4" r="4.4"/><path class="a" d="M15.8 17.5l1.3 1.3 2.4-2.6"/></svg></span>
+			<span class="zair-scene__badge zair-scene__badge--b"><svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2.6l7.4 2.9v5.9c0 4.8-3.1 8.7-7.4 10-4.3-1.3-7.4-5.2-7.4-10V5.5z"/><path class="a" d="M8.6 12l2.3 2.3 4.5-4.6"/></svg></span>
+			<span class="zair-scene__badge zair-scene__badge--c"><svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.5 16.4v2.9a1.9 1.9 0 0 1-2.1 1.9 18.9 18.9 0 0 1-8.2-2.9 18.6 18.6 0 0 1-5.7-5.7 18.9 18.9 0 0 1-2.9-8.3A1.9 1.9 0 0 1 4.5 2.2h2.9a1.9 1.9 0 0 1 1.9 1.6c.1.9.4 1.8.7 2.7a1.9 1.9 0 0 1-.4 2L8.3 9.7a15.2 15.2 0 0 0 5.7 5.7l1.2-1.2a1.9 1.9 0 0 1 2-.4c.9.3 1.8.6 2.7.7a1.9 1.9 0 0 1 1.6 1.9z"/><path class="a" d="M17.5 2.2l3.6 3.6-3.6 3.6M13.6 5.8h7.5"/></svg></span>
+		</div>
 		<div data-zair-reveal style="--zair-reveal-delay:90ms">
 			<h2 class="zair-type-section" id="zair-orgs-title">Zultys AI Receptionist Is Especially Impactful for Organizations That:</h2>
 			<ul class="zair-checklist">
@@ -230,35 +300,75 @@
 <!-- =====================================================================
      6: RESULTS
      ===================================================================== -->
-<section class="zair-results" aria-labelledby="zair-results-title">
-	<!-- Animated dotted wave: same canvas routine as the Mobile ZAC section (vendor/zultys-wave.js) -->
-	<div class="zair-results__wave" data-zair-wave aria-hidden="true"></div>
-	<button class="zair-wave-toggle" type="button" data-zair-wave-toggle aria-label="Pause background animation" hidden></button>
-	<div class="zair-container zair-container--wide">
+<section class="zair-results zair-on-dark" aria-labelledby="zair-results-title">
+	<div class="zair-container">
 		<div class="zair-section-head" data-zair-reveal>
 			<h2 class="zair-type-section" id="zair-results-title">Results That Improve Both Service and Efficiency</h2>
 		</div>
 		<div class="zair-results__grid">
-			<div class="zair-result" data-zair-reveal style="--zair-reveal-delay:0ms">
-				<svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.8 10.5v3M6.2 7.5v9M9.6 4.5v15M13 8.5v7"/><circle class="a" cx="18" cy="16.6" r="4.2"/><path class="a" d="M16.4 17.5c.9.9 2.3.9 3.2 0M16.6 15.3h.01M19.4 15.3h.01"/></svg>
+			<article class="zair-result" data-zair-reveal style="--zair-reveal-delay:0ms">
+				<div class="zair-result__head"><span class="zair-result__badge"><svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.8 10.5v3M6.2 7.5v9M9.6 4.5v15M13 8.5v7"/><circle class="a" cx="18" cy="16.6" r="4.2"/><path class="a" d="M16.4 17.5c.9.9 2.3.9 3.2 0M16.6 15.3h.01M19.4 15.3h.01"/></svg></span><h3 class="zair-result__title">Continuous Improvement</h3></div>
 				<p>Call recordings and sentiment analysis indicators for continuous service improvement</p>
-			</div>
-			<div class="zair-result" data-zair-reveal style="--zair-reveal-delay:80ms">
-				<svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.5 16.4v2.9a1.9 1.9 0 0 1-2.1 1.9 18.9 18.9 0 0 1-8.2-2.9 18.6 18.6 0 0 1-5.7-5.7 18.9 18.9 0 0 1-2.9-8.3A1.9 1.9 0 0 1 4.5 2.2h2.9a1.9 1.9 0 0 1 1.9 1.6c.1.9.4 1.8.7 2.7a1.9 1.9 0 0 1-.4 2L8.3 9.7a15.2 15.2 0 0 0 5.7 5.7l1.2-1.2a1.9 1.9 0 0 1 2-.4c.9.3 1.8.6 2.7.7a1.9 1.9 0 0 1 1.6 1.9z"/><path class="a" d="M14.6 6.2l1.9 1.9 3.9-4"/></svg>
+			</article>
+			<article class="zair-result" data-zair-reveal style="--zair-reveal-delay:80ms">
+				<div class="zair-result__head"><span class="zair-result__badge"><svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.5 16.4v2.9a1.9 1.9 0 0 1-2.1 1.9 18.9 18.9 0 0 1-8.2-2.9 18.6 18.6 0 0 1-5.7-5.7 18.9 18.9 0 0 1-2.9-8.3A1.9 1.9 0 0 1 4.5 2.2h2.9a1.9 1.9 0 0 1 1.9 1.6c.1.9.4 1.8.7 2.7a1.9 1.9 0 0 1-.4 2L8.3 9.7a15.2 15.2 0 0 0 5.7 5.7l1.2-1.2a1.9 1.9 0 0 1 2-.4c.9.3 1.8.6 2.7.7a1.9 1.9 0 0 1 1.6 1.9z"/><path class="a" d="M14.6 6.2l1.9 1.9 3.9-4"/></svg></span><h3 class="zair-result__title">No Missed Calls</h3></div>
 				<p>No missed calls or slow responses, reducing the number of lost leads and frustrated customers</p>
-			</div>
-			<div class="zair-result" data-zair-reveal style="--zair-reveal-delay:160ms">
-				<svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.8 17.6a7.2 7.2 0 0 1 14.4 0M12 10.4V8.6M10.2 8.6h3.6"/><path d="M3 17.6h18"/><path class="a" d="M5 20.6h14"/><path class="a" d="M18.6 3.2v2.4M17.4 4.4h2.4"/></svg>
+			</article>
+			<article class="zair-result" data-zair-reveal style="--zair-reveal-delay:0ms">
+				<div class="zair-result__head"><span class="zair-result__badge"><svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.8 17.6a7.2 7.2 0 0 1 14.4 0M12 10.4V8.6M10.2 8.6h3.6"/><path d="M3 17.6h18"/><path class="a" d="M5 20.6h14"/><path class="a" d="M18.6 3.2v2.4M17.4 4.4h2.4"/></svg></span><h3 class="zair-result__title">Always-On Front Desk</h3></div>
 				<p>A consistent, professional “front desk” experience that’s always available</p>
-			</div>
-			<div class="zair-result" data-zair-reveal style="--zair-reveal-delay:0ms">
-				<svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path class="a" d="M7 7.5l4.2 4.2 3-3 5.3 5.3"/><path class="a" d="M19.5 9.8v4.2h-4.2"/></svg>
+			</article>
+			<article class="zair-result" data-zair-reveal style="--zair-reveal-delay:80ms">
+				<div class="zair-result__head"><span class="zair-result__badge"><svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path class="a" d="M7 7.5l4.2 4.2 3-3 5.3 5.3"/><path class="a" d="M19.5 9.8v4.2h-4.2"/></svg></span><h3 class="zair-result__title">Lower Overhead</h3></div>
 				<p>Lower overhead to handle complex or customer-critical needs</p>
-			</div>
-			<div class="zair-result" data-zair-reveal style="--zair-reveal-delay:80ms">
-				<svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4.6" y="2.6" width="5.2" height="9.6" rx="2.6"/><path d="M2.6 10a4.6 4.6 0 0 0 9.2 0M7.2 14.6v3.4M5 18h4.4"/><g class="a" fill="currentColor" stroke="none"><circle cx="15" cy="5" r="1.05"/><circle cx="18" cy="5" r="1.05"/><circle cx="21" cy="5" r="1.05"/><circle cx="15" cy="8.6" r="1.05"/><circle cx="18" cy="8.6" r="1.05"/><circle cx="21" cy="8.6" r="1.05"/><circle cx="15" cy="12.2" r="1.05"/><circle cx="18" cy="12.2" r="1.05"/><circle cx="21" cy="12.2" r="1.05"/><circle cx="18" cy="15.8" r="1.05"/></g></svg>
+			</article>
+			<article class="zair-result" data-zair-reveal style="--zair-reveal-delay:0ms">
+				<div class="zair-result__head"><span class="zair-result__badge"><svg class="zair-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4.6" y="2.6" width="5.2" height="9.6" rx="2.6"/><path d="M2.6 10a4.6 4.6 0 0 0 9.2 0M7.2 14.6v3.4M5 18h4.4"/><g class="a" fill="currentColor" stroke="none"><circle cx="15" cy="5" r="1.05"/><circle cx="18" cy="5" r="1.05"/><circle cx="21" cy="5" r="1.05"/><circle cx="15" cy="8.6" r="1.05"/><circle cx="18" cy="8.6" r="1.05"/><circle cx="21" cy="8.6" r="1.05"/><circle cx="15" cy="12.2" r="1.05"/><circle cx="18" cy="12.2" r="1.05"/><circle cx="21" cy="12.2" r="1.05"/><circle cx="18" cy="15.8" r="1.05"/></g></svg></span><h3 class="zair-result__title">Voice or Keypad Entry</h3></div>
 				<p>Flexibility enables callers to use voice or DTMF digit entry — improving the customer experience</p>
+			</article>
+			<div class="zair-result zair-result--cta" data-zair-reveal style="--zair-reveal-delay:80ms">
+				<h3 class="zair-result__title">See AI Receptionist in Action</h3>
+				<a class="zair-btn zair-btn--gradient" href="https://www.zultys.com/AI-Receptionist-demo-request/">Get a Demo</a>
 			</div>
+		</div>
+	</div>
+</section>
+
+<!-- =====================================================================
+     FAQ (PLACEHOLDER COPY)
+     ===================================================================== -->
+<section class="zair-faq" aria-labelledby="zair-faq-title">
+	<div class="zair-container zair-faq__inner">
+		<div class="zair-faq__intro" data-zair-reveal>
+			<h2 class="zair-type-section" id="zair-faq-title">Frequently Asked Questions</h2>
+			<p>Can’t find your answer? Our team is happy to help.</p>
+			<a class="zair-btn zair-btn--outline-light" href="https://www.zultys.com/request-demo/">Talk to an Expert</a>
+		</div>
+		<div class="zair-faq__list" data-zair-reveal style="--zair-reveal-delay:90ms">
+				<details class="zair-faq__item">
+					<summary><span>What is Zultys AI Receptionist?</span><span class="zair-faq__icon" aria-hidden="true"></span></summary>
+					<div class="zair-faq__answer"><p>Placeholder answer. Zultys AI Receptionist is a 24/7 conversational front line that answers questions, guides callers, and routes them to the right person when needed.</p></div>
+				</details>
+				<details class="zair-faq__item">
+					<summary><span>Where does the AI get its answers?</span><span class="zair-faq__icon" aria-hidden="true"></span></summary>
+					<div class="zair-faq__answer"><p>Placeholder answer. It uses only approved sources, like your website, FAQs, and documents, that administrators choose and control.</p></div>
+				</details>
+				<details class="zair-faq__item">
+					<summary><span>What happens when the AI can’t answer a question?</span><span class="zair-faq__icon" aria-hidden="true"></span></summary>
+					<div class="zair-faq__answer"><p>Placeholder answer. It transfers the call to a department that can assist, with context, so callers never repeat themselves.</p></div>
+				</details>
+				<details class="zair-faq__item">
+					<summary><span>Does it work after business hours?</span><span class="zair-faq__icon" aria-hidden="true"></span></summary>
+					<div class="zair-faq__answer"><p>Placeholder answer. Yes. It answers every call instantly, around the clock, and captures after-hours leads.</p></div>
+				</details>
+				<details class="zair-faq__item">
+					<summary><span>Can callers use the keypad instead of speaking?</span><span class="zair-faq__icon" aria-hidden="true"></span></summary>
+					<div class="zair-faq__answer"><p>Placeholder answer. Yes. Callers can use voice or DTMF digit entry.</p></div>
+				</details>
+				<details class="zair-faq__item">
+					<summary><span>How do I get started?</span><span class="zair-faq__icon" aria-hidden="true"></span></summary>
+					<div class="zair-faq__answer"><p>Placeholder answer. Request a demo and the Zultys team will walk you through setup and configuration for your organization.</p></div>
+				</details>
 		</div>
 	</div>
 </section>
