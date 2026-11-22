@@ -204,6 +204,52 @@ def build():
 			</div>
 		</div>
 		<div class="zair-hero__media">
+			<!-- Background "AI at work" layer: faint wireframe panels showing the
+			     receptionist reading approved sources, detecting intent and routing.
+			     Decorative and illustrative only. -->
+			<div class="zair-ops" aria-hidden="true">
+				<div class="zair-ops__panel zair-ops__panel--wave">
+					<p class="zair-ops__row"><span class="zair-ops__label">Caller</span><span class="zair-ops__bars"><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i></span></p>
+					<p class="zair-ops__row"><span class="zair-ops__label">AI voice</span><span class="zair-ops__bars zair-ops__bars--ai"><i style="--h:9"></i><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i><i style="--h:1"></i><i style="--h:2"></i><i style="--h:3"></i><i style="--h:4"></i><i style="--h:5"></i><i style="--h:6"></i><i style="--h:7"></i><i style="--h:8"></i><i style="--h:9"></i></span></p>
+					<p class="zair-ops__axis"><span>00:00</span><span>00:14</span><span>00:28</span><span>00:42</span></p>
+				</div>
+				<div class="zair-ops__panel zair-ops__panel--sources">
+					<p class="zair-ops__title">Approved sources</p>
+					<ul class="zair-ops__list">
+						<li><i></i>northbridge.com/help</li>
+						<li class="is-match"><i></i>Return &amp; exchange policy.pdf<b>Match</b></li>
+						<li><i></i>FAQ · Orders &amp; shipping</li>
+						<li><i></i>Store hours &amp; locations</li>
+					</ul>
+				</div>
+				<div class="zair-ops__panel zair-ops__panel--intent">
+					<p class="zair-ops__title">Intent detected</p>
+					<p class="zair-ops__big">Return policy</p>
+					<p class="zair-ops__meter"><span></span></p>
+					<p class="zair-ops__meta"><span>Confidence</span><span>96%</span></p>
+				</div>
+				<div class="zair-ops__panel zair-ops__panel--steps">
+					<p class="zair-ops__title">Reading instructions</p>
+					<ol class="zair-ops__steps">
+						<li class="is-done">Answer only from approved sources</li>
+						<li class="is-active">Confirm the order details</li>
+						<li>Offer a transfer to a person</li>
+					</ol>
+				</div>
+				<div class="zair-ops__panel zair-ops__panel--routing">
+					<p class="zair-ops__title">If the caller needs a person</p>
+					<p class="zair-ops__pill">Billing <em>→</em> Accounts team</p>
+					<p class="zair-ops__pill">Sales <em>→</em> Ext. 204</p>
+					<p class="zair-ops__pill">After hours <em>→</em> Voicemail</p>
+				</div>
+				<div class="zair-ops__panel zair-ops__panel--sentiment">
+					<p class="zair-ops__title">Caller sentiment</p>
+					<svg viewBox="0 0 200 56" preserveAspectRatio="none"><path class="zair-ops__grid" d="M0 14H200M0 28H200M0 42H200"/><path class="zair-ops__line" d="M0 44 C20 42 30 36 46 38 S72 30 88 32 S118 20 134 22 S166 12 200 10"/></svg>
+					<p class="zair-ops__meta"><span>Language · English</span><span>Positive ▲</span></p>
+				</div>
+				<span class="zair-ops__link zair-ops__link--l"><i></i></span>
+				<span class="zair-ops__link zair-ops__link--r"><i></i></span>
+			</div>
 			<!-- Phone mockup: same device and app chrome as the homepage hero phone,
 			     showing the example conversation from the current page. Decorative. -->
 			<div class="zair-phone" aria-hidden="true">
