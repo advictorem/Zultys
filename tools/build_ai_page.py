@@ -91,6 +91,7 @@ LOGOS = [  # testimonial logos from the redesign homepage, see tools/process_log
     ("show-me-real-estate", "Show-Me Real Estate", 176, 120),
     ("sports-and-imports-autos", "Sports and Imports Autos", 134, 120),
     ("tate-law-group", "Tate Law Group", 304, 120),
+    ("wires-inc", "Wires, Inc.", 120, 120),
     ("inett", "i-NETT", 350, 120),
 ]
 
@@ -286,9 +287,12 @@ def build():
 <!-- =====================================================================
      CUSTOMER LOGOS (scrolling strip; testimonial logos from the homepage)
      ===================================================================== -->
-<section class="zair-logos" aria-label="Zultys customers">
+<section class="zair-logos" aria-labelledby="zair-logos-title">
 	<div class="zair-container zair-container--wide zair-logos__inner">
-		<p class="zair-logos__lead">{icon("shield", "zair-icon--solid")}<span>From healthcare and education to legal and local businesses, organizations rely on Zultys</span></p>
+		<div class="zair-logos__head">
+			<h2 id="zair-logos-title" class="zair-type-section">Trusted by Thousands of Businesses</h2>
+			<p class="zair-logos__lead">From healthcare and education to legal and local businesses, organizations rely on Zultys</p>
+		</div>
 		<div class="zair-marquee" data-zair-marquee>
 			<div class="zair-marquee__track">
 				<ul class="zair-marquee__list">
@@ -388,7 +392,6 @@ def build():
 		</div>
 		<figure class="zair-risk__photo" data-zair-reveal style="--zair-reveal-delay:90ms">
 			{pic("happy-caller", [800, 1400], "(max-width: 900px) 100vw, 540px", 800, 756, "Smiling businesswoman taking a call on her mobile phone in a bright office")}
-			<span class="zair-shield" aria-hidden="true">{icon("shield")}</span>
 		</figure>
 	</div>
 </section>

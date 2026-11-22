@@ -20,10 +20,11 @@ Copy the one-line inline `<script>` from the page `<head>` (adds `zair-hero-anim
 
 - **Copy** is the current zultys.com page, verbatim. Headings were changed from all caps to title case, and two small grammar fixes were made: "Requires different levels of users" → "Require…", "customer-critical need" → "…needs".
 - **Hero phone** is HTML/CSS (no image). It reproduces the device and app chrome of the homepage hero phone (`hero-reveal/phone-clean-source-20261020.webp`) with the example conversation from the old hero graphic ("Northbridge Outfitters").
-- **Logo strip** uses the testimonial logos from the redesign homepage (`assets/redesign/meeting-support/*.webp` and `inett-figma.png`), converted to one-colour grey PNGs by `tools/process_logos.py`. Only WebP versions of the customer logos exist on the server; the Wires, Inc. logo is left out because it doesn't read as a one-colour mark. The lead line next to the logos is new copy.
+
 - **Organizations composition**: person cutout from Pexels photo 5717729 (background removed with `rembg`), with HTML product UI around it. Stats, menu items and caller details in that UI are illustrative.
 - **Hero "AI at work" layer** (`.zair-ops`, behind the phone): decorative, `aria-hidden` wireframe panels (transcription bars, approved sources, intent, instructions, routing, sentiment). All names, extensions and percentages are illustrative, not product data. Animations are CSS-only and stop under `prefers-reduced-motion`.
 - **Results** shows four of the original five bullets ("voice or DTMF digit entry" was removed at review). The card titles are new copy.
+- **Customer logo strip**: headline "Trusted by Thousands of Businesses" and the supporting line are new copy; confirm the "thousands" figure before launch. Logos are the homepage testimonial logos in full colour (white or pale lettering recoloured to dark slate so it reads on white; see `tools/process_logos.py`).
 - **FAQ** questions and answers are placeholder copy and must be replaced before launch.
 - **Call example images** are the two product images from the current page (`Image_Modiule4-copy.jpg`, `Image_Modiule4.jpg`).
 - **Icons** are inline SVG, redrawn in the ZAC page line style (blue `#003CDA`, green accent `#4BA541`). They are defined in `tools/build_ai_page.py`.
