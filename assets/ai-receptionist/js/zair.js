@@ -123,6 +123,68 @@
 	/* ------------------------------------------------------------------
 	 * Staging shell only: announcement dismiss + simple mobile menu.
 	 * ------------------------------------------------------------------ */
+	/* ------------------------------------------------------------------
+	 * Voice demo players. Each card holds an <audio> element only once a
+	 * recording URL is set (VOICE_DEMOS in the generator); without one the
+	 * button and slider stay disabled and the card says "Recording coming
+	 * soon". Starting one recording pauses the others.
+	 * ------------------------------------------------------------------ */
+	(function players() {
+		var all = [];
+		function fmt(t) {
+			if (!isFinite(t) || t < 0) t = 0;
+			var m = Math.floor(t / 60), s = Math.floor(t % 60);
+			return m + ':' + (s < 10 ? '0' : '') + s;
+		}
+		$$('[data-zair-player]').forEach(function (el) {
+			var audio = $('audio', el);
+			if (!audio) return;
+			var btn = $('.zair-player__btn', el);
+			var seek = $('.zair-player__seek', el);
+			var status = $('.zair-player__status', el);
+			var cur = $('[data-zair-cur]', el);
+			var dur = $('[data-zair-dur]', el);
+			var label = btn.getAttribute('aria-label');
+			all.push(audio);
+			btn.disabled = false; seek.disabled = false;
+			if (!el.classList.contains('is-playing')) status.textContent = 'Press play';
+
+			function paint() {
+				var d = audio.duration, pct = d ? (audio.currentTime / d) * 100 : 0;
+				if (document.activeElement !== seek) seek.value = pct;
+				seek.style.setProperty('--zair-seek', pct + '%');
+				cur.textContent = fmt(audio.currentTime);
+			}
+			audio.addEventListener('loadedmetadata', function () { dur.textContent = fmt(audio.duration); });
+			if (audio.readyState >= 1) dur.textContent = fmt(audio.duration);
+			audio.addEventListener('timeupdate', paint);
+			audio.addEventListener('play', function () {
+				all.forEach(function (a) { if (a !== audio) a.pause(); });
+				el.classList.add('is-playing');
+				status.textContent = 'Playing';
+				btn.setAttribute('aria-label', label.replace(/^Play/, 'Pause'));
+			});
+			audio.addEventListener('pause', function () {
+				el.classList.remove('is-playing');
+				status.textContent = audio.ended ? 'Press play to listen again' : 'Paused';
+				btn.setAttribute('aria-label', label);
+			});
+			audio.addEventListener('ended', function () { audio.currentTime = 0; paint(); });
+			audio.addEventListener('error', function () {
+				status.textContent = 'This recording could not be loaded';
+				btn.disabled = true; seek.disabled = true;
+			});
+			btn.addEventListener('click', function () {
+				if (audio.paused) { var p = audio.play(); if (p && p.catch) p.catch(function () {}); }
+				else audio.pause();
+			});
+			seek.addEventListener('input', function () {
+				if (audio.duration) audio.currentTime = (seek.value / 100) * audio.duration;
+				paint();
+			});
+		});
+	})();
+
 	(function shell() {
 		var dismiss = $('[data-zair-dismiss]');
 		if (dismiss) dismiss.addEventListener('click', function () { dismiss.closest('[data-zair-announcement]').hidden = true; });

@@ -18,6 +18,19 @@ FLYER = "https://www.zultys.com/wp-content/uploads/2026/08/Zultys-AI-Receptionis
 REQUEST_DEMO = "https://www.zultys.com/request-demo/"
 REQUEST_QUOTE = "https://www.zultys.com/get-a-quote/"
 
+# Voice demos. "src" is the recording's URL; leave it empty until the audio
+# is uploaded and the player shows "Recording coming soon" with play disabled
+# (no simulated playback). Descriptions are new copy: check them against the
+# recordings before launch.
+VOICE_DEMOS = [
+    {"key": "healthcare", "title": "Healthcare", "src": "",
+     "text": "Hear it greet patients, answer questions about hours and locations, and get callers to the right office."},
+    {"key": "education", "title": "Education", "src": "",
+     "text": "Hear it help parents and students with schedules, events and contacts without tying up the front office."},
+    {"key": "automotive", "title": "Automotive", "src": "",
+     "text": "Hear it share service hours, field scheduling questions and transfer complex requests to the service team."},
+]
+
 # 24px grid. Blue line work uses currentColor; elements with class "a" are the green accent.
 ICONS = {
     "always": '<circle cx="12" cy="8.6" r="4.1"/><path class="a" d="M10.2 8.7l1.3 1.3 2.5-2.6"/><path class="a" d="M5.3 6.2a7.2 7.2 0 0 1 13.4 0" stroke-dasharray="0 2.6"/><path d="M2.5 15.2h2.7v6H2.5z"/><path d="M5.2 16.3l2.9-1.4h4.4a1.5 1.5 0 0 1 0 3H9.3"/><path d="M5.2 20.2h7.7l6.6-3.9a1.4 1.4 0 0 0-1.5-2.4l-4.2 2.4"/>',
@@ -111,6 +124,30 @@ FAQ = [  # PLACEHOLDER copy: to be replaced with approved answers
 ]
 
 
+def voice_demo(d):
+    t = d["title"]
+    has = bool(d["src"])
+    audio = f'\n\t\t\t\t\t<audio preload="metadata" src="{d["src"]}"></audio>' if has else ""
+    dis = "" if has else " disabled"
+    status = "Press play" if has else "Recording coming soon"
+    bars = "".join("<i></i>" for _ in range(5))
+    return f"""			<article class="zair-demo" data-zair-reveal>
+				<span class="zair-demo__bars" aria-hidden="true">{bars}</span>
+				<h3 class="zair-demo__title">{t}</h3>
+				<p class="zair-demo__text">{d["text"]}</p>
+				<div class="zair-player" data-zair-player{' data-ready' if has else ''}>{audio}
+					<button class="zair-player__btn" type="button" aria-label="Play the {t} demo"{dis}>
+						<svg class="zair-player__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>
+						<svg class="zair-player__pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5h3.2v14H7.5zM13.3 5h3.2v14h-3.2z" fill="currentColor"/></svg>
+					</button>
+					<div class="zair-player__body">
+						<p class="zair-player__status" aria-live="polite">{status}</p>
+						<input class="zair-player__seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="{t} demo position"{dis}>
+						<p class="zair-player__time"><span data-zair-cur>0:00</span> / <span data-zair-dur>{'0:00' if has else '–:––'}</span></p>
+					</div>
+				</div>
+			</article>"""
+
 def build():
     header = open(os.path.join(HERE, "ai-shell-header.html")).read()
     footer = open(os.path.join(HERE, "ai-shell-footer.html")).read()
@@ -132,6 +169,7 @@ def build():
 					<div class="zair-faq__answer"><p>{ans}</p></div>
 				</details>''' for q, ans in FAQ)
     orgs = "\n".join(f"\t\t\t\t\t<li>{x}</li>" for x in ORGS)
+    demos = "\n".join(voice_demo(d) for d in VOICE_DEMOS)
     calls = "\n".join(
         f'''			<figure class="zair-call" data-zair-reveal style="--zair-reveal-delay:{i * 90}ms">
 				<div class="zair-call__img">
@@ -292,7 +330,7 @@ def build():
 	<div class="zair-container zair-container--wide zair-logos__inner">
 		<div class="zair-logos__head">
 			<img class="zair-logos__stars" src="/assets/ai-receptionist/icons/stars-5.svg" width="97" height="17" alt="5 out of 5 stars">
-			<h2 id="zair-logos-title" class="zair-type-section">Trusted by Thousands of Businesses</h2>
+			<h2 id="zair-logos-title" class="zair-type-section">Businesses Rely on Zultys</h2>
 			<p class="zair-logos__lead">From healthcare and education to legal and local businesses, organizations rely on Zultys</p>
 		</div>
 		<div class="zair-marquee" data-zair-marquee>
@@ -377,6 +415,23 @@ def build():
 		<div class="zair-calls__panel">
 {calls}
 		</div>
+	</div>
+</section>
+
+<!-- =====================================================================
+     4b: VOICE DEMOS (Healthcare, Education, Automotive)
+     ===================================================================== -->
+<section class="zair-demos" aria-labelledby="zair-demos-title">
+	<div class="zair-container zair-container--wide">
+		<div class="zair-demos__head" data-zair-reveal>
+			<p class="zair-tag">Listen to the AI Receptionist</p>
+			<h2 class="zair-type-section" id="zair-demos-title">Hear Zultys AI Receptionist Take the Call</h2>
+			<p class="zair-demos__lead">Three industries, three front desks. Press play to hear how it greets callers, answers from approved sources, and hands off to your team.</p>
+		</div>
+		<div class="zair-demos__grid">
+{demos}
+		</div>
+		<p class="zair-demos__cta"><a class="zair-btn zair-btn--gradient" href="{DEMO}">Get a Demo</a></p>
 	</div>
 </section>
 
