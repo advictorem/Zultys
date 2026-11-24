@@ -784,19 +784,6 @@
    ========================================================================== */
 .zair .zair-demos { padding-bottom: var(--zair-section-space); }
 .zair .zair-demos__head { max-width: 1000px; margin-bottom: 40px; }
-.zair .zair-tag {
-	display: inline-block;
-	margin: 0 0 18px;
-	padding: 7px 14px;
-	border-radius: 6px;
-	background: #e8f1fb;
-	color: #205da6;
-	font-size: 13px;
-	font-weight: 700;
-	line-height: 16px;
-	letter-spacing: .12em;
-	text-transform: uppercase;
-}
 .zair .zair-demos__head h2 { max-width: none; margin: 0; }
 .zair .zair-demos__lead { max-width: 680px; margin: 16px 0 0; color: #3d4560; font-size: 19px; line-height: 27px; }
 .zair .zair-demos__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -809,14 +796,29 @@
 	background: #fff;
 	box-shadow: 0 10px 30px rgba(0, 6, 64, .07);
 }
-.zair .zair-demo__bars { display: flex; align-items: center; gap: 5px; height: 34px; margin-bottom: 28px; }
-.zair .zair-demo__bars i { width: 5px; border-radius: 3px; }
-.zair .zair-demo__bars i:nth-child(1) { height: 10px; background: var(--z26-color-navy); }
-.zair .zair-demo__bars i:nth-child(2) { height: 18px; background: var(--z26-color-blue); }
-.zair .zair-demo__bars i:nth-child(3) { height: 26px; background: var(--z26-color-sky); }
-.zair .zair-demo__bars i:nth-child(4) { height: 34px; background: var(--z26-color-green); }
-.zair .zair-demo__bars i:nth-child(5) { height: 34px; background: var(--z26-color-lavender); }
-.zair .zair-demo__title { margin: 0 0 10px; color: var(--z26-color-navy); font-size: 24px; font-weight: 700; line-height: 28px; }
+.zair .zair-demo__bars { display: flex; align-items: center; gap: 5px; height: 34px; margin-bottom: 26px; }
+/* Voice wave: bars rise and fall in a rolling sequence (Nextiva XBert
+   style), faster while that card's recording plays. */
+.zair .zair-demo__bars i {
+	width: 5px;
+	height: 100%;
+	border-radius: 3px;
+	transform: scaleY(.3);
+	animation: zair-voice 1.3s ease-in-out infinite;
+}
+.zair .zair-demo__bars i:nth-child(1) { background: var(--z26-color-navy); animation-delay: -1.04s; }
+.zair .zair-demo__bars i:nth-child(2) { background: var(--z26-color-blue); animation-delay: -.78s; animation-duration: 1.1s; }
+.zair .zair-demo__bars i:nth-child(3) { background: var(--z26-color-sky); animation-delay: -.52s; animation-duration: 1.45s; }
+.zair .zair-demo__bars i:nth-child(4) { background: var(--z26-color-green); animation-delay: -.26s; animation-duration: 1.2s; }
+.zair .zair-demo__bars i:nth-child(5) { background: var(--z26-color-lavender); animation-delay: 0s; animation-duration: 1.35s; }
+.zair .zair-demo:has(.is-playing) .zair-demo__bars i { animation-duration: .55s; }
+.zair .zair-demo:has(.is-playing) .zair-demo__bars i:nth-child(2n) { animation-duration: .45s; }
+@keyframes zair-voice {
+	0%, 100% { transform: scaleY(.28); }
+	50% { transform: scaleY(1); }
+}
+.zair .zair-demo__title { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; color: var(--z26-color-navy); font-size: 24px; font-weight: 700; line-height: 28px; }
+.zair .zair-icon--demo { width: 40px; height: 40px; }
 .zair .zair-demo__text { flex: 1; margin: 0 0 26px; color: #3d4560; font-size: 16px; line-height: 23px; }
 
 .zair .zair-player {
@@ -1206,6 +1208,11 @@
 	.zair .zair-hero__media :is(.zair-phone, .zair-msg) { transform: none !important; }
 	.zair .zair-phone { translate: none !important; }
 	.zair .zair-ops { translate: none !important; }
+	.zair .zair-demo__bars i { animation: none !important; }
+	.zair .zair-demo__bars i:nth-child(1) { transform: scaleY(.3); }
+	.zair .zair-demo__bars i:nth-child(2) { transform: scaleY(.55); }
+	.zair .zair-demo__bars i:nth-child(3) { transform: scaleY(.8); }
+	.zair .zair-demo__bars i:nth-child(4), .zair .zair-demo__bars i:nth-child(5) { transform: scaleY(1); }
 	.zair .zair-ops *, .zair .zair-ops *::after { animation: none !important; }
 	.zair .zair-ops__panel { transform: none !important; }
 	.zair .zair-ops__line { stroke-dashoffset: 0 !important; }

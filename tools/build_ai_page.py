@@ -33,6 +33,9 @@ VOICE_DEMOS = [
 
 # 24px grid. Blue line work uses currentColor; elements with class "a" are the green accent.
 ICONS = {
+    "healthcare": '<path d="M12 20.4s-8.2-4.7-8.2-10.7A4.5 4.5 0 0 1 12 7.1a4.5 4.5 0 0 1 8.2 2.6c0 6-8.2 10.7-8.2 10.7z"/><path class="a" d="M2.6 12.6h4.6l1.7-3.2 2.7 6.2 1.9-4.2h7.9"/>',
+    "education": '<path d="M12 4.2L2.4 9l9.6 4.8L21.6 9z"/><path d="M6.4 11v5.2c0 1.6 2.5 3 5.6 3s5.6-1.4 5.6-3V11"/><path class="a" d="M21.6 9v4.4"/><circle class="a" cx="21.6" cy="15.2" r="1.3"/>',
+    "automotive": '<path d="M5 16H3v-3.4c0-.9.6-1.6 1.4-1.8l2.3-.6 2.4-3.2a2 2 0 0 1 1.6-.8h4.2a2 2 0 0 1 1.6.8l2.5 3.2 1.9.5c.9.2 1.5 1 1.5 1.9V16h-2M9.4 16h5.2M6.8 10.4h10.6M12 7.2v3.2"/><circle class="a" cx="7.2" cy="16.2" r="2.1"/><circle class="a" cx="16.8" cy="16.2" r="2.1"/>',
     "always": '<circle cx="12" cy="8.6" r="4.1"/><path class="a" d="M10.2 8.7l1.3 1.3 2.5-2.6"/><path class="a" d="M5.3 6.2a7.2 7.2 0 0 1 13.4 0" stroke-dasharray="0 2.6"/><path d="M2.5 15.2h2.7v6H2.5z"/><path d="M5.2 16.3l2.9-1.4h4.4a1.5 1.5 0 0 1 0 3H9.3"/><path d="M5.2 20.2h7.7l6.6-3.9a1.4 1.4 0 0 0-1.5-2.4l-4.2 2.4"/>',
     "intelligence": '<rect x="6" y="6" width="12" height="12" rx="2.2"/><path d="M9.5 3v3M14.5 3v3M9.5 18v3M14.5 18v3M3 9.5h3M3 14.5h3M18 9.5h3M18 14.5h3"/><path class="a" d="M12 8.4c.3 2 1.3 3 3.3 3.3-2 .3-3 1.3-3.3 3.3-.3-2-1.3-3-3.3-3.3 2-.3 3-1.3 3.3-3.3z"/>',
     "scale": '<circle cx="12" cy="13.6" r="7.4"/><path d="M9.8 3h4.4M12 3v3.2M18.2 6.6l1.6-1.6"/><path class="a" d="M12 13.6l3.2-3.2"/><path class="a" d="M12 8.2v1M17.4 13.6h-1M12 19v-1M6.6 13.6h1"/>',
@@ -133,7 +136,7 @@ def voice_demo(d):
     bars = "".join("<i></i>" for _ in range(5))
     return f"""			<article class="zair-demo" data-zair-reveal>
 				<span class="zair-demo__bars" aria-hidden="true">{bars}</span>
-				<h3 class="zair-demo__title">{t}</h3>
+				<h3 class="zair-demo__title">{icon(d["key"], "zair-icon--demo")}<span>{t}</span></h3>
 				<p class="zair-demo__text">{d["text"]}</p>
 				<div class="zair-player" data-zair-player{' data-ready' if has else ''}>{audio}
 					<button class="zair-player__btn" type="button" aria-label="Play the {t} demo"{dis}>
@@ -424,9 +427,8 @@ def build():
 <section class="zair-demos" aria-labelledby="zair-demos-title">
 	<div class="zair-container zair-container--wide">
 		<div class="zair-demos__head" data-zair-reveal>
-			<p class="zair-tag">Listen to the AI Receptionist</p>
 			<h2 class="zair-type-section" id="zair-demos-title">Hear Zultys AI Receptionist Take the Call</h2>
-			<p class="zair-demos__lead">Three industries, three front desks. Press play to hear how it greets callers, answers from approved sources, and hands off to your team.</p>
+			<p class="zair-demos__lead">Whatever your industry, the AI Receptionist is personalized to your company: your hours, your policies, your team. Press play to hear it greet callers, answer from your approved sources, and hand off when it should.</p>
 		</div>
 		<div class="zair-demos__grid">
 {demos}
